@@ -5,7 +5,7 @@ export interface Feature {
 }
 
 export const features: Feature[] = [
-  { id: 'login', title: 'Login com Google', description: 'Entre com sua conta Google de forma simples e seguro.' },
+  { id: 'login', title: 'Login com Google', description: 'Entre com sua conta Google de forma simples.' },
   { id: 'glucose', title: 'Registro de glicemia', description: 'Registre valores manualmente ou por foto do glicosímetro, com o contexto da medição (jejum, pós-refeição, antes de dormir ou aleatório).' },
   { id: 'ranges', title: 'Classificação por faixas', description: 'Seus registros de glicemia são classificados automaticamente em faixas, ajudando a visualizar o que está fora do esperado.' },
   { id: 'food', title: 'Registro de refeições', description: 'Descreva ou fotografe suas refeições para manter um histórico do que foi comido.' },

@@ -14,18 +14,21 @@ export function CTA() {
           Ainda não temos o app nas lojas nem uma versão web publicada. Mas você já pode ver como
           o DiabetesIA funciona e acompanhar as novidades.
         </p>
-        <div className={styles.buttons}>
+        <a
+          href="#como-funciona"
+          className={styles.btn}
+          onClick={() => track('cta_click', { location: 'final' })}
+        >
+          Ver como funciona
+        </a>
+        {/* Availability badges: informative only, not clickable until real links exist. */}
+        <ul className={styles.badges} aria-label="Disponibilidade">
           {platforms.map((p) => (
-            <button
-              key={p}
-              type="button"
-              className={styles.btn}
-              onClick={() => track('cta_click', { location: 'final', platform: p })}
-            >
+            <li key={p} className={styles.badge}>
               {p} — Em breve
-            </button>
+            </li>
           ))}
-        </div>
+        </ul>
       </div>
     </section>
   );

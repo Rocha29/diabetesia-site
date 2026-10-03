@@ -24,8 +24,8 @@ export function Screenshots() {
           Conheça as telas do DiabetesIA
         </h2>
         <p className={styles.intro}>
-          As imagens abaixo são ilustrações da interface, feitas para mostrar como o app
-          funciona, com dados fictícios.
+          As imagens abaixo são telas reais do app, preenchidas com dados de demonstração
+          (nenhum dado de pessoa real).
         </p>
 
         <div className={styles.carouselWrap}>
@@ -57,7 +57,7 @@ export function Screenshots() {
           </button>
         </div>
 
-        <p className={styles.note}>Ilustração da interface com dados fictícios.</p>
+        <p className={styles.note}>Telas reais do app com dados de demonstração.</p>
       </div>
     </section>
   );
