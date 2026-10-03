@@ -311,3 +311,13 @@ Estes termos podem ser atualizados conforme o DiabetesIA evolui. Alterações re
 
 **9. Contato**
 Canal de contato: a definir — pendente de validação jurídica.
+
+
+## Por que o DiabetesIA existe (seção após o Hero)
+Não identifica a pessoa da história (decisão do dono em 03/10/2026). Só trocar para "minha mãe" com a autorização dela.
+
+**Nasceu de uma história real.**
+O DiabetesIA começou dentro de casa. Uma pessoa muito próxima de mim convive com o diabetes e precisa de insulina, mas nem sempre consegue manter a rotina de aplicações, medições e alimentação. Tentamos um sensor de glicose, mas ela não se sentiu bem com um aparelho que mostrava a todos que ela tinha a doença.
+Foi aí que entendi que o desafio não era só tecnológico. Para muita gente, aceitar o diabetes já é difícil, e a ferramenta precisa ser discreta, simples e acolhedora, sem julgamento.
+O DiabetesIA quer ajudar quem vive essa situação a dar os primeiros passos para um controle básico, e permitir que a família apoie de perto, sempre com o consentimento de quem está sendo cuidado.
+Princípios: Discreto, Simples e Acolhedor.

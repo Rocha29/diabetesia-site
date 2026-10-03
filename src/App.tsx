@@ -1,6 +1,7 @@
 import { Header } from './components/Header/Header';
 import { Hero } from './components/Hero/Hero';
 import { Problem } from './components/Problem/Problem';
+import { Story } from './components/Story/Story';
 import { Solution } from './components/Solution/Solution';
 import { HowItWorks } from './components/HowItWorks/HowItWorks';
 import { AISection } from './components/AISection/AISection';
@@ -26,6 +27,7 @@ export default function App() {
       <Header />
       <main id="main-content">
         <Hero />
+        <Story />
         <Problem />
         <Solution />
         <HowItWorks />
