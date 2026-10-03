@@ -1,0 +1,13 @@
+{
+  "name": "diabetesia-demo-screenshots",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "shots": "sh ./run.sh"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-react": "^4.7.0",
+    "puppeteer-core": "^25.12.0",
+    "vite": "^5.4.21"
+  }
+}

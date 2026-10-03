@@ -73,3 +73,9 @@ destaque no topo — o conteúdo precisa de revisão jurídica antes de uso come
 npm run placeholders   # screenshots placeholder em src/assets/screens
 npm run og              # public/og.png e public/apple-touch-icon.png
 ```
+
+## Documentação e ferramentas para retomar
+- `docs/SITE_CONTEXT.md`: os fatos do produto (o que existe, o que está em desenvolvimento) e as regras de conteúdo (não inventar, não fazer claims médicos).
+- `docs/SITE_DESIGN.md`: a especificação visual (tokens, seções, acessibilidade).
+- `docs/SITE_COPY.md`: todos os textos do site e os rascunhos de Privacidade e Termos.
+- `tools/screenshots/`: gera os prints reais da V2 com dados de demonstração (veja o README da pasta).

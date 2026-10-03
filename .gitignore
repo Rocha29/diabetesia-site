@@ -2,3 +2,5 @@ node_modules
 dist
 .DS_Store
 *.local
+tools/screenshots/out/
+tools/screenshots/vite.log
