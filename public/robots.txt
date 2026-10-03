@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://rocha29.github.io/diabetesia-site/sitemap.xml

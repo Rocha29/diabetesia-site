@@ -1,0 +1,125 @@
+.hero {
+  background: var(--surface-alt);
+  padding: var(--space-7) 0;
+  overflow: hidden;
+}
+
+.grid {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-6);
+  align-items: center;
+  text-align: center;
+}
+
+.copy {
+  max-width: 600px;
+}
+
+.eyebrow {
+  font-size: var(--fs-small);
+  font-weight: 700;
+  color: var(--accent-primary);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  margin-bottom: var(--space-3);
+}
+
+.subhead {
+  margin-top: var(--space-4);
+  color: var(--text-secondary);
+}
+
+.ctas {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  margin-top: var(--space-5);
+}
+
+.primary,
+.secondary {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  padding: var(--space-3) var(--space-5);
+  border-radius: var(--radius-pill);
+  font-weight: 700;
+  text-decoration: none;
+  transition: transform 160ms ease-out, box-shadow 160ms ease-out;
+}
+
+.primary {
+  background: var(--accent-warm);
+  color: #fff;
+}
+
+.secondary {
+  background: transparent;
+  color: var(--text-primary);
+  border: 1.5px solid var(--border);
+}
+
+.primary:hover,
+.secondary:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-soft);
+}
+
+.trust {
+  margin-top: var(--space-4);
+  font-size: var(--fs-small);
+  color: var(--text-secondary);
+}
+
+.art {
+  position: relative;
+  width: 100%;
+  max-width: 320px;
+  height: 420px;
+  display: flex;
+  justify-content: center;
+}
+
+.blob {
+  position: absolute;
+  top: -40px;
+  width: 420px;
+  height: 420px;
+  z-index: 0;
+}
+
+.phoneBack {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  transform: rotate(-6deg);
+  z-index: 1;
+}
+
+.phoneFront {
+  position: absolute;
+  bottom: 0;
+  left: 10px;
+  z-index: 2;
+}
+
+@media (min-width: 1024px) {
+  .grid {
+    flex-direction: row;
+    text-align: left;
+    align-items: center;
+    gap: var(--space-7);
+  }
+  .copy {
+    flex: 0 0 55%;
+  }
+  .ctas {
+    flex-direction: row;
+  }
+  .art {
+    flex: 0 0 45%;
+    max-width: none;
+    height: 500px;
+  }
+}

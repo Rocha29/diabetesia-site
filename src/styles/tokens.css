@@ -1,0 +1,81 @@
+:root {
+  /* Superfícies */
+  --bg: #faf8f4;
+  --surface: #ffffff;
+  --surface-alt: #f1efe8;
+  --border: #e4e0d4;
+
+  /* Texto */
+  --text-primary: #16211f;
+  --text-secondary: #5a655f;
+  --text-hint: #94998f;
+
+  /* Acentos */
+  --accent-primary: #0f6e66;
+  --accent-primary-dark: #0a4f49;
+  --accent-secondary: #2f7fd1;
+  --accent-warm: #d97a3f;
+
+  /* Faixas de glicose (ilustrações) */
+  --glucose-low: #c23b3b;
+  --glucose-low-bg: #fbe4e0;
+  --glucose-in-range: #2f8f5b;
+  --glucose-in-range-bg: #e1f1e6;
+  --glucose-high: #c97a1f;
+  --glucose-high-bg: #fbe9d4;
+
+  --shadow-soft: 0 2px 10px rgba(22, 33, 31, 0.06);
+  --shadow-card: 0 6px 20px rgba(22, 33, 31, 0.08);
+
+  --radius-sm: 8px;
+  --radius-md: 14px;
+  --radius-lg: 22px;
+  --radius-pill: 100px;
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 20px;
+  --space-5: 32px;
+  --space-6: 48px;
+  --space-7: 72px;
+  --space-8: 104px;
+
+  --container-max: 1160px;
+  --gutter: 20px;
+
+  --font-sans: 'Plus Jakarta Sans', system-ui, sans-serif;
+  --font-body: 'Inter', system-ui, sans-serif;
+
+  --fs-h1: clamp(2rem, 1.3rem + 3vw, 3.4rem);
+  --fs-h2: clamp(1.5rem, 1.15rem + 1.6vw, 2.25rem);
+  --fs-h3: clamp(1.15rem, 1rem + 0.6vw, 1.4rem);
+  --fs-body: clamp(1rem, 0.95rem + 0.2vw, 1.0625rem);
+  --fs-small: 0.875rem;
+}
+
+@media (max-width: 374px) {
+  :root {
+    --gutter: 16px;
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #10161a;
+    --surface: #161e22;
+    --surface-alt: #1c2529;
+    --border: #263037;
+    --text-primary: #eef1ee;
+    --text-secondary: #a9b3ab;
+    --text-hint: #6c766e;
+    --accent-primary: #2fa89b;
+    --accent-primary-dark: #4fc3b5;
+    --accent-secondary: #6ba9e8;
+    --accent-warm: #e39157;
+    --glucose-low-bg: #3a1f1f;
+    --glucose-in-range-bg: #1c3025;
+    --glucose-high-bg: #352611;
+    --shadow-soft: 0 2px 10px rgba(0, 0, 0, 0.3);
+    --shadow-card: 0 8px 24px rgba(0, 0, 0, 0.4);
+  }
+}

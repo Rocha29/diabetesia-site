@@ -1,0 +1,51 @@
+.section {
+  padding: var(--space-7) 0;
+}
+
+.title {
+  text-align: center;
+  margin-bottom: var(--space-6);
+}
+
+.track {
+  display: flex;
+  gap: var(--space-4);
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  padding-bottom: var(--space-2);
+  -webkit-overflow-scrolling: touch;
+}
+
+.card {
+  scroll-snap-align: start;
+  flex: 0 0 82%;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-5);
+}
+
+.card h3 {
+  margin-top: var(--space-2);
+}
+
+.card p {
+  margin-top: var(--space-2);
+  color: var(--text-secondary);
+}
+
+.number {
+  font-family: var(--font-sans);
+  font-weight: 700;
+  font-size: 2rem;
+  color: var(--accent-primary);
+}
+
+@media (min-width: 1024px) {
+  .track {
+    overflow: visible;
+  }
+  .card {
+    flex: 1;
+  }
+}

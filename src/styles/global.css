@@ -1,0 +1,123 @@
+@import './tokens.css';
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text-primary);
+  font-family: var(--font-body);
+  font-size: var(--fs-body);
+  line-height: 1.55;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3, h4 {
+  font-family: var(--font-sans);
+  font-weight: 700;
+  line-height: 1.15;
+  margin: 0;
+}
+
+h1 { font-size: var(--fs-h1); }
+h2 { font-size: var(--fs-h2); }
+h3 { font-size: var(--fs-h3); }
+
+p { margin: 0; }
+
+a {
+  color: var(--accent-secondary);
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+button {
+  font-family: inherit;
+  cursor: pointer;
+}
+
+:focus-visible {
+  outline: 2px solid var(--accent-secondary);
+  outline-offset: 2px;
+}
+
+.container {
+  width: 100%;
+  max-width: var(--container-max);
+  margin: 0 auto;
+  padding: 0 var(--gutter);
+}
+
+.skip-link {
+  position: absolute;
+  left: -9999px;
+  top: 0;
+  background: var(--accent-primary);
+  color: #fff;
+  padding: var(--space-2) var(--space-3);
+  z-index: 100;
+  border-radius: var(--radius-sm);
+}
+
+.skip-link:focus {
+  left: var(--space-3);
+  top: var(--space-3);
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+/* Reveal ao rolar: conteúdo nasce visível; JS só adiciona a classe "revealed" quando já está animado.
+   Nunca ocultamos via opacity:0 fixo no CSS base — só dentro do bloco reduced-motion abaixo. */
+@media (prefers-reduced-motion: no-preference) {
+  .reveal {
+    opacity: 0;
+    transform: translateY(8px);
+    transition: opacity 300ms ease-out, transform 300ms ease-out;
+  }
+  .reveal.revealed {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.badge-wip {
+  display: inline-block;
+  background: var(--surface-alt);
+  border: 1px solid var(--border);
+  color: var(--text-secondary);
+  font-size: var(--fs-small);
+  padding: var(--space-1) var(--space-3);
+  border-radius: var(--radius-pill);
+  font-weight: 600;
+}
+
+.disclaimer {
+  background: var(--surface-alt);
+  border-left: 3px solid var(--accent-primary);
+  padding: var(--space-4);
+  border-radius: var(--radius-sm);
+  color: var(--text-secondary);
+  font-size: var(--fs-small);
+}
