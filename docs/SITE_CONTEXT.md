@@ -33,7 +33,16 @@ O site será um repositório NOVO e público: `Rocha29/diabetesia-site`, na past
 - Política de privacidade versionada com aceite, consentimento separado para a IA na nuvem, ver/exportar meus dados (JSON) e excluir a conta.
 - **Acompanhamento semanal:** resumo da semana, gráfico de 7 dias, hipoglicemias em destaque, padrões observados, "Para conversar com seu médico", observações da IA validadas (sem diagnóstico), relatório da semana.
 
-**Planejado (não existe):** acompanhamento mensal e anual, publicação nas lojas e modelo comercial.
+**Já na branch principal da V2 (React) e do backend, mas a V2 web NÃO está publicada. No site: "Em desenvolvimento":**
+- **Acompanhamento Hoje, Semana, Mês e Ano** (somente dados registrados; sem dados suficientes, a tela avisa) e **insights** com nível de confiança e limitações (não indicam causa, não diagnosticam).
+- **Relatório de acompanhamento** por semana, mês, 3 meses ou período personalizado, com "Salvar como PDF" (impressão do navegador), CSV e JSON.
+- **Lembretes** (medicamento, refeição e glicemia) e **Minhas consultas** (agenda, avisos, reagendamento e preparo), com o backend como fonte de verdade.
+- **Controles de privacidade** (aceite, consentimento da IA na nuvem, ver/exportar dados em JSON, excluir conta) e **perfil + check-in mensal**.
+- Backend: IA local com Ollama (em testes), servidor de desenvolvimento e feature flags. **Não vira texto do site** (é infraestrutura interna).
+
+**Planejado (não existe):**
+- Dispositivos (**Garmin** e **Google Health Connect**): a arquitetura está preparada, mas não há conexão com nenhum dispositivo. No site, "Planejado".
+- Publicação nas lojas e modelo comercial. O **Premium** da V2 existe só com pagamento SIMULADO, em desenvolvimento: **não mencionar planos, preços nem pagamento no site**.
 
 **Disponibilidade REAL:**
 - **Android:** só APK de teste interno. **NÃO** está na Play Store.

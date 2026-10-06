@@ -8,30 +8,37 @@ export function Tracking() {
           Acompanhamento
         </h2>
         <p className={styles.context}>
-          Estamos construindo o acompanhamento por semana, mês e ano aos poucos. A visão semanal
-          já está em desenvolvimento; mês e ano ainda são planos para o futuro.
+          O acompanhamento por período está em desenvolvimento na versão web (V2), ainda não
+          publicada. Ele mostra somente o que você registrou: quando não há dados suficientes, a
+          tela avisa em vez de preencher um número.
         </p>
 
         <div className={styles.grid}>
           <article className={styles.card}>
             <span className="badge-wip">Em desenvolvimento</span>
+            <h3>Hoje</h3>
+            <p>Um resumo do dia, com as medições e as refeições registradas.</p>
+          </article>
+
+          <article className={styles.card}>
+            <span className="badge-wip">Em desenvolvimento</span>
             <h3>Semana</h3>
             <p>
-              Um resumo da semana, com gráfico de 7 dias e destaque para hipoglicemias, está em
-              desenvolvimento.
+              Resumo da semana, com gráfico de 7 dias, faixas de glicemia e destaque para
+              hipoglicemias.
             </p>
           </article>
 
-          <article className={`${styles.card} ${styles.faded}`}>
+          <article className={styles.card}>
             <span className="badge-wip">Em desenvolvimento</span>
             <h3>Mês</h3>
-            <p>O acompanhamento mensal, com comparação objetiva em relação ao mês anterior, ainda está sendo planejado.</p>
+            <p>O mês, com comparação objetiva em relação ao mês anterior.</p>
           </article>
 
-          <article className={`${styles.card} ${styles.faded}`}>
+          <article className={styles.card}>
             <span className="badge-wip">Em desenvolvimento</span>
             <h3>Ano</h3>
-            <p>O acompanhamento anual ainda não existe e está nos planos futuros do DiabetesIA.</p>
+            <p>A visão do ano, para acompanhar a evolução dos seus registros ao longo do tempo.</p>
           </article>
         </div>
       </div>
