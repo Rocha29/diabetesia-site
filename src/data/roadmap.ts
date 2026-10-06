@@ -26,6 +26,13 @@ export const roadmapItems: RoadmapItem[] = [
     status: 'wip',
   },
   {
+    id: 'journey',
+    title: 'Minha jornada',
+    description:
+      'Quantos dias do ano você manteve seu acompanhamento, com uma meta pessoal de dias, a sequência atual, um calendário e marcos. Conta dias, não medições: a frequência continua sendo a orientada pelo seu profissional de saúde.',
+    status: 'wip',
+  },
+  {
     id: 'insights',
     title: 'Insights sobre seus registros',
     description:

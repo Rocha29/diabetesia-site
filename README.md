@@ -2,7 +2,7 @@
 
 Site oficial do DiabetesIA: apresenta o que o app faz hoje (glicemia, refeições, medicamentos,
 receitas, chat de IA, histórico e relatórios), o que está em desenvolvimento na versão web V2
-(acompanhamento por dia, semana, mês e ano, lembretes, consultas, insights, relatório com PDF,
+(acompanhamento por dia, semana, mês e ano, "Minha jornada", lembretes, consultas, insights, relatório com PDF,
 CSV e JSON, controles de privacidade e perfil) e o que é planejado (dispositivos como Garmin e
 Health Connect). Não faz claims médicos nem inventa números, depoimentos ou lojas.
 

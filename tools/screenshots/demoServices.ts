@@ -7,7 +7,9 @@ import type { EntryRepository, PrescriptionRepository } from '@/services/entries
 import type { ProfileRepository } from '@/services/profile/profileRepository';
 import type { ConsentRecord, DataCounts, PrivacyRepository } from '@/services/privacy/privacyRepository';
 import type { TrendSummaryRepository } from '@/services/tracking/trendSummaryRepository';
+import type { FeedbackRepository } from '@/services/feedback/feedbackRepository';
 import type { AiService } from '@/services/ai/aiService';
+import type { FeedbackInput } from '@/types/feedback';
 import type {
   Entry,
   EntryKind,
@@ -445,6 +447,7 @@ export const privacyRepository: PrivacyRepository = {
       medication_entries: [],
       prescriptions: [],
       trend_summaries: [],
+      feedback: [],
     };
   },
   async deleteAccount() {
@@ -465,6 +468,54 @@ export const trendSummaryRepository: TrendSummaryRepository = {
   },
   async save(_userId, weekStart, cache) {
     trendCache.set(weekStart, cache);
+  },
+};
+
+// ─── feedbackRepository / feedbackPromptStore ───────────────────────────────
+
+const feedbackEntries: { ces: number; comment: string | null; trigger: string }[] = [];
+
+export const feedbackRepository: FeedbackRepository = {
+  async submit(_userId, input: FeedbackInput) {
+    feedbackEntries.push({ ces: input.ces, comment: input.comment, trigger: input.trigger });
+  },
+};
+
+// Pretends the demo account is a long-time user with no prompt history, so
+// the automatic feedback card never shows up in screenshots by surprise.
+export const feedbackPromptStore = {
+  getOrInitFirstUseAt(_now: Date): Date {
+    return daysAgo(60);
+  },
+  getLastFeedbackAt(): Date | null {
+    return null;
+  },
+  recordFeedbackSent(_now: Date): void {
+    // no-op in the demo harness
+  },
+  getLastDismissedAt(): Date | null {
+    return null;
+  },
+  recordDismissed(_now: Date): void {
+    // no-op in the demo harness
+  },
+};
+
+// ─── journeyPreferencesRepository ("Minha jornada" goal) ─────────────────────
+
+// No goal saved: the journey card shows the suggested goal (200 days).
+const journeyGoals: { goalDaysPerYear: number | null; goalsByYear: Record<string, number> } = {
+  goalDaysPerYear: null,
+  goalsByYear: {},
+};
+
+export const journeyPreferencesRepository = {
+  async get(_userId: string) {
+    return { goalDaysPerYear: journeyGoals.goalDaysPerYear, goalsByYear: { ...journeyGoals.goalsByYear } };
+  },
+  async saveGoal(_userId: string, year: number, goalDays: number) {
+    journeyGoals.goalDaysPerYear = goalDays;
+    journeyGoals.goalsByYear[String(year)] = goalDays;
   },
 };
 
