@@ -43,6 +43,9 @@ Roda `tsc --noEmit` e depois `vite build`. Gera multi-página: `index.html`,
 
 ## Deploy (GitHub Pages)
 
+Todo PR roda `.github/workflows/ci.yml` (typecheck e build). Faça o merge só com o check verde.
+
+
 `.github/workflows/deploy.yml` builda e publica `dist/` via `actions/upload-pages-artifact` +
 `actions/deploy-pages` a cada push na `main`. É preciso habilitar GitHub Pages com fonte
 "GitHub Actions" nas configurações do repositório.
