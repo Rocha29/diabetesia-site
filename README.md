@@ -1,11 +1,27 @@
 # DiabetesIA — site institucional
 
 Site oficial do DiabetesIA: apresenta o que o app faz hoje (glicemia, refeições, medicamentos,
-receitas, chat de IA, histórico e relatórios), o que está em desenvolvimento (acompanhamento
-semanal) e o que é planejado. Não faz claims médicos nem inventa números, depoimentos ou lojas.
+receitas, chat de IA, histórico e relatórios), o que está em desenvolvimento na versão web V2
+(acompanhamento por dia, semana, mês e ano, lembretes, consultas, insights, relatório com PDF,
+CSV e JSON, controles de privacidade e perfil) e o que é planejado (dispositivos como Garmin e
+Health Connect). Não faz claims médicos nem inventa números, depoimentos ou lojas.
 
 Stack: React 18 + TypeScript + Vite 5, CSS Modules, fontes via `@fontsource`. Sem framework de UI
 e sem biblioteca de animação.
+
+## Onde editar o conteúdo
+
+| O que | Arquivo |
+|---|---|
+| Recursos disponíveis hoje | `src/data/features.ts` |
+| Recursos de IA | `src/data/features.ts` (`aiItems`) |
+| Acompanhamento (Hoje, Semana, Mês, Ano) | `src/components/Tracking/Tracking.tsx` |
+| Novidades da V2 ("Em desenvolvimento" e "Planejado") | `src/data/roadmap.ts` |
+| Perguntas frequentes | `src/data/faq.ts` |
+| Versões V1 e V2 | `src/components/Versions/Versions.tsx` |
+
+Regra: a V2 web **ainda não está publicada**. Um recurso só sai de `roadmap.ts` para `features.ts`
+depois de estar disponível para o público.
 
 ## Como rodar
 

@@ -27,6 +27,7 @@ export function Versions() {
             <ul>
               <li>Nova experiência em React, para a web.</li>
               <li>Relatórios exportados por impressão do navegador ("Salvar como PDF").</li>
+              <li>Acompanhamento por dia, semana, mês e ano, lembretes, consultas e relatório com PDF, CSV e JSON.</li>
               <li>Em desenvolvimento, ainda não publicada.</li>
             </ul>
           </article>

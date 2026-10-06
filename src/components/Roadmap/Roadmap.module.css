@@ -1,6 +1,6 @@
 .section {
   padding: var(--space-7) 0;
-  background: var(--surface-alt);
+  background: var(--bg, transparent);
 }
 
 .title {
@@ -39,14 +39,20 @@
   color: var(--text-secondary);
 }
 
-.faded {
-  opacity: 0.6;
-}
 
 @media (min-width: 1024px) {
   .grid {
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(3, 1fr);
   }
+}
+
+.planned {
+  background: var(--surface-alt);
+}
+
+.group {
+  margin-top: var(--space-6);
+  text-align: center;
 }
 
 .card :global(.badge-wip) {

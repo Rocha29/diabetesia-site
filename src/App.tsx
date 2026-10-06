@@ -7,6 +7,7 @@ import { HowItWorks } from './components/HowItWorks/HowItWorks';
 import { AISection } from './components/AISection/AISection';
 import { Features } from './components/Features/Features';
 import { Tracking } from './components/Tracking/Tracking';
+import { Roadmap } from './components/Roadmap/Roadmap';
 import { Screenshots } from './components/Screenshots/Screenshots';
 import { Versions } from './components/Versions/Versions';
 import { Security } from './components/Security/Security';
@@ -34,6 +35,7 @@ export default function App() {
         <AISection />
         <Features />
         <Tracking />
+        <Roadmap />
         <Screenshots />
         <Versions />
         <Security />
