@@ -36,6 +36,7 @@ O site será um repositório NOVO e público: `Rocha29/diabetesia-site`, na past
 **Já na branch principal da V2 (React) e do backend, mas a V2 web NÃO está publicada. No site: "Em desenvolvimento":**
 - **Acompanhamento Hoje, Semana, Mês e Ano** (somente dados registrados; sem dados suficientes, a tela avisa) e **insights** com nível de confiança e limitações (não indicam causa, não diagnosticam).
 - **Relatório de acompanhamento** por semana, mês, 3 meses ou período personalizado, com "Salvar como PDF" (impressão do navegador), CSV e JSON.
+- **Minha jornada:** dias do ano com pelo menos 1 registro de glicemia, meta pessoal de dias (sugestão de 200), sequência, calendário e marcos. Conta dias, não medições; não é recomendação médica, ranking nem pontuação clínica. Linguagem sempre positiva.
 - **Lembretes** (medicamento, refeição e glicemia) e **Minhas consultas** (agenda, avisos, reagendamento e preparo), com o backend como fonte de verdade.
 - **Controles de privacidade** (aceite, consentimento da IA na nuvem, ver/exportar dados em JSON, excluir conta) e **perfil + check-in mensal**.
 - Backend: IA local com Ollama (em testes), servidor de desenvolvimento e feature flags. **Não vira texto do site** (é infraestrutura interna).

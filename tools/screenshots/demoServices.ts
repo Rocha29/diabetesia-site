@@ -501,6 +501,24 @@ export const feedbackPromptStore = {
   },
 };
 
+// ─── journeyPreferencesRepository ("Minha jornada" goal) ─────────────────────
+
+// No goal saved: the journey card shows the suggested goal (200 days).
+const journeyGoals: { goalDaysPerYear: number | null; goalsByYear: Record<string, number> } = {
+  goalDaysPerYear: null,
+  goalsByYear: {},
+};
+
+export const journeyPreferencesRepository = {
+  async get(_userId: string) {
+    return { goalDaysPerYear: journeyGoals.goalDaysPerYear, goalsByYear: { ...journeyGoals.goalsByYear } };
+  },
+  async saveGoal(_userId: string, year: number, goalDays: number) {
+    journeyGoals.goalDaysPerYear = goalDays;
+    journeyGoals.goalsByYear[String(year)] = goalDays;
+  },
+};
+
 // ─── usageStore ──────────────────────────────────────────────────────────────
 
 let usage: AiCloudUsage = { used: 3, limit: 50, remaining: 47 };
