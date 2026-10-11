@@ -28,6 +28,7 @@ export function Versions() {
               <li>Nova experiência em React, para a web.</li>
               <li>Relatórios exportados por impressão do navegador ("Salvar como PDF").</li>
               <li>Acompanhamento por dia, semana, mês e ano, lembretes, consultas e relatório com PDF, CSV e JSON.</li>
+              <li>Pressão arterial, estimativa de carboidratos e calorias com metas, e um novo visual mais fácil de ler.</li>
               <li>Em desenvolvimento, ainda não publicada.</li>
             </ul>
           </article>

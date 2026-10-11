@@ -1,10 +1,19 @@
 # DiabetesIA — site institucional
 
-Site oficial do DiabetesIA: apresenta o que o app faz hoje (glicemia, refeições, medicamentos,
-receitas, chat de IA, histórico e relatórios), o que está em desenvolvimento na versão web V2
-(acompanhamento por dia, semana, mês e ano, "Minha jornada", lembretes, consultas, insights, relatório com PDF,
-CSV e JSON, controles de privacidade e perfil) e o que é planejado (dispositivos como Garmin e
-Health Connect). Não faz claims médicos nem inventa números, depoimentos ou lojas.
+O site oficial do DiabetesIA apresenta três grupos de recursos:
+
+- **O que o app faz hoje:** glicemia, refeições, medicamentos, receitas, chat de IA, histórico e relatórios.
+- **O que está em desenvolvimento na versão web V2:**
+  - pressão arterial;
+  - carboidratos e calorias estimados por tabela, com metas;
+  - novo visual mais fácil de ler;
+  - acompanhamento por dia, semana, mês e ano;
+  - "Minha jornada", lembretes, consultas e insights;
+  - relatório com PDF, CSV e JSON;
+  - controles de privacidade e perfil.
+- **O que é planejado:** dispositivos como Garmin e Health Connect.
+
+O site não faz alegações médicas nem inventa números, depoimentos ou lojas.
 
 Stack: React 18 + TypeScript + Vite 5, CSS Modules, fontes via `@fontsource`. Sem framework de UI
 e sem biblioteca de animação.
@@ -16,7 +25,7 @@ e sem biblioteca de animação.
 | Recursos disponíveis hoje | `src/data/features.ts` |
 | Recursos de IA | `src/data/features.ts` (`aiItems`) |
 | Acompanhamento (Hoje, Semana, Mês, Ano) | `src/components/Tracking/Tracking.tsx` |
-| Novidades da V2 ("Em desenvolvimento" e "Planejado") | `src/data/roadmap.ts` |
+| Novidades da V2 ("Em desenvolvimento" e "Planejado"), incluindo pressão, carboidratos e calorias, metas e o novo visual | `src/data/roadmap.ts` |
 | Perguntas frequentes | `src/data/faq.ts` |
 | Versões V1 e V2 | `src/components/Versions/Versions.tsx` |
 
@@ -49,16 +58,17 @@ Roda `tsc --noEmit` e depois `vite build`. Gera multi-página: `index.html`,
 
 ## Como trocar os screenshots
 
-As imagens em `src/assets/screens/{login,home,glucose,food,medication,prescription,chat,report,
-tracking,profile,checkin}.{webp,png}` são **placeholders temporários** (gerados por
-`npm run placeholders`, script em `scripts/generate-placeholders.mjs`). Para usar as capturas
-reais da V2:
+As imagens em `src/assets/screens/` são **telas reais da V2, no novo visual, com dados fictícios**. Elas são geradas por `tools/screenshots`, cujo README explica tudo.
 
-1. Capture as telas em 390×844, com dados fictícios de demonstração (nunca dados reais).
-2. Exporte em WebP e PNG (fallback), com os mesmos nomes de arquivo.
-3. Substitua os arquivos em `src/assets/screens/`.
-4. A lista e os textos alternativos ficam em `src/data/screens.ts` — ajuste `label`/`alt` se
-   necessário.
+```bash
+cd tools/screenshots
+npm install
+V2_DIR=/caminho/da/v2 npm run shots
+```
+
+O script sobe a V2 com dados de demonstração (sem Firebase e sem backend), fotografa as telas em 390×844 e copia PNG e WebP para `src/assets/screens/`. A lista de telas, as legendas e os textos alternativos ficam em `src/data/screens.ts`.
+
+**Revise as imagens antes do commit:** só dados fictícios, sem texto de diagnóstico.
 
 ## Domínio próprio
 
