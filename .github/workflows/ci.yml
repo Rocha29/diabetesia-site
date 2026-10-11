@@ -1,0 +1,31 @@
+name: CI
+
+# Pull requests only: the build must pass before merging. Publishing stays in
+# deploy.yml (push to main → GitHub Pages).
+on:
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build:
+    name: Typecheck and build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - run: npm ci
+
+      # tsc --noEmit + vite build (index, privacidade, termos).
+      - run: npm run build
