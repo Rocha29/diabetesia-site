@@ -12,3 +12,8 @@ export function firebaseAuth(): never {
 export function firestore(): never {
   throw new Error('demo: firestore() should never be called in the screenshot harness');
 }
+
+export const firebaseMeasurementId: string | undefined = undefined;
+export function firebaseAppInstance(): never {
+  throw new Error('demo: no Firebase app in the harness');
+}

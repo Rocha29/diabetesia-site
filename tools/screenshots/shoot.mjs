@@ -52,49 +52,73 @@ async function goto(page, path) {
   await page.close();
 }
 
-// ---- glucose form (fill value + trigger AI analysis) ----
+// Helpers for the screens below.
+async function clickButton(page, pattern) {
+  const buttons = await page.$$('button');
+  for (const b of buttons) {
+    const text = await b.evaluate((el) => el.textContent || '');
+    if (pattern.test(text)) {
+      await b.click();
+      return true;
+    }
+  }
+  return false;
+}
+
+async function scrollToHeading(page, pattern, offset = 70) {
+  await page.evaluate(
+    (src, off) => {
+      const re = new RegExp(src, 'i');
+      const el = [...document.querySelectorAll('h1,h2,h3,span,strong')].find((n) => re.test(n.textContent || ''));
+      if (el) window.scrollTo(0, el.getBoundingClientRect().top + window.scrollY - off);
+    },
+    pattern.source,
+    offset,
+  );
+  await new Promise((r) => setTimeout(r, 300));
+}
+
+// ---- home: Alimentação de hoje with the meals open ----
+{
+  const page = await newPage();
+  await goto(page, '/home');
+  await new Promise((r) => setTimeout(r, 800));
+  await clickButton(page, /Ver refeições/i);
+  await new Promise((r) => setTimeout(r, 300));
+  await scrollToHeading(page, /Alimentação de hoje/, 60);
+  await shoot(page, 'nutrition');
+  await page.close();
+}
+
+// ---- glucose form (floating label + photo tips) ----
 {
   const page = await newPage();
   await goto(page, '/glucose/register');
   await new Promise((r) => setTimeout(r, 400));
-  const valueInput = await page.$('input[inputmode="decimal"], input[type="number"], input');
+  const valueInput = await page.$('input[inputmode="decimal"]');
   if (valueInput) {
     await valueInput.click({ clickCount: 3 });
     await valueInput.type('142');
   }
-  // Click "Analisar" button if present
-  const buttons = await page.$$('button');
-  for (const b of buttons) {
-    const text = await b.evaluate((el) => el.textContent || '');
-    if (/analis/i.test(text)) {
-      await b.click();
-      break;
-    }
-  }
-  await new Promise((r) => setTimeout(r, 1200));
+  await page.evaluate(() => document.activeElement && document.activeElement.blur());
+  await new Promise((r) => setTimeout(r, 400));
   await shoot(page, 'glucose');
   await page.close();
 }
 
-// ---- food ----
+// ---- food: "Estimar carboidratos e calorias" → Conferir porções ----
 {
   const page = await newPage();
   await goto(page, '/food/register');
   await new Promise((r) => setTimeout(r, 400));
-  const textarea = await page.$('textarea, input[type="text"]');
+  const textarea = await page.$('textarea');
   if (textarea) {
     await textarea.click();
-    await textarea.type('Arroz, feijão e frango grelhado');
+    await textarea.type('2 pães com manteiga e café com leite');
   }
-  const buttons = await page.$$('button');
-  for (const b of buttons) {
-    const text = await b.evaluate((el) => el.textContent || '');
-    if (/analis/i.test(text)) {
-      await b.click();
-      break;
-    }
-  }
-  await new Promise((r) => setTimeout(r, 1200));
+  await clickButton(page, /Estimar carboidratos/i);
+  await new Promise((r) => setTimeout(r, 1500));
+  await scrollToHeading(page, /^Café com leite$/, 40);
   await shoot(page, 'food');
   await page.close();
 }
@@ -113,16 +137,18 @@ async function goto(page, path) {
     await inputs[1].click();
     await inputs[1].type('500');
   }
-  const buttons = await page.$$('button');
-  for (const b of buttons) {
-    const text = await b.evaluate((el) => el.textContent || '');
-    if (/analis/i.test(text)) {
-      await b.click();
-      break;
-    }
-  }
-  await new Promise((r) => setTimeout(r, 1200));
+  await page.evaluate(() => document.activeElement && document.activeElement.blur());
+  await new Promise((r) => setTimeout(r, 400));
   await shoot(page, 'medication');
+  await page.close();
+}
+
+// ---- blood pressure (history + chart) ----
+{
+  const page = await newPage();
+  await goto(page, '/pressure');
+  await new Promise((r) => setTimeout(r, 1000));
+  await shoot(page, 'pressure');
   await page.close();
 }
 
@@ -135,18 +161,11 @@ async function goto(page, path) {
   await page.close();
 }
 
-// ---- chat ----
+// ---- chat (ready-made questions, before the first message) ----
 {
   const page = await newPage();
   await goto(page, '/ai');
-  await new Promise((r) => setTimeout(r, 400));
-  const input = await page.$('input[type="text"], textarea, input');
-  if (input) {
-    await input.click();
-    await input.type('Minha glicemia de 230 depois do almoço é preocupante?');
-    await page.keyboard.press('Enter');
-  }
-  await new Promise((r) => setTimeout(r, 1500));
+  await new Promise((r) => setTimeout(r, 800));
   await shoot(page, 'chat');
   await page.close();
 }
@@ -160,44 +179,32 @@ async function goto(page, path) {
   await page.close();
 }
 
-// ---- tracking (top: disclaimer + hypo card + summary) ----
+// ---- tracking (week: summary, chart with target band) ----
 {
   const page = await newPage();
   await goto(page, '/report/tracking');
-  await new Promise((r) => setTimeout(r, 800));
+  await new Promise((r) => setTimeout(r, 1000));
   await page.evaluate(() => window.scrollTo(0, 0));
   await new Promise((r) => setTimeout(r, 200));
   await shoot(page, 'tracking');
-
-  // ---- tracking-patterns (scroll to the AI patterns/observations section) ----
-  const buttons = await page.$$('button');
-  for (const b of buttons) {
-    const text = await b.evaluate((el) => el.textContent || '');
-    if (/Gerar observações da IA/i.test(text)) {
-      await b.click();
-      break;
-    }
-  }
-  await new Promise((r) => setTimeout(r, 1500));
-  const scrolled = await page.evaluate(() => {
-    const heading = [...document.querySelectorAll('h2')].find((el) => /Padrões observados/i.test(el.textContent || ''));
-    if (heading) {
-      heading.scrollIntoView({ block: 'start' });
-      return true;
-    }
-    return false;
-  });
-  if (!scrolled) await page.evaluate(() => window.scrollBy(0, 500));
-  await new Promise((r) => setTimeout(r, 300));
-  await shoot(page, 'tracking-patterns');
   await page.close();
 }
 
-// ---- profile ----
+// ---- Minha jornada ----
+{
+  const page = await newPage();
+  await goto(page, '/journey');
+  await new Promise((r) => setTimeout(r, 1000));
+  await shoot(page, 'journey');
+  await page.close();
+}
+
+// ---- profile: Minhas metas + Aparência ----
 {
   const page = await newPage();
   await goto(page, '/profile');
-  await new Promise((r) => setTimeout(r, 800));
+  await new Promise((r) => setTimeout(r, 1000));
+  await scrollToHeading(page, /Minhas metas/, 20);
   await shoot(page, 'profile');
   await page.close();
 }

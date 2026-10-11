@@ -11,6 +11,8 @@ import type { FeedbackRepository } from '@/services/feedback/feedbackRepository'
 import type { AiService } from '@/services/ai/aiService';
 import type { FeedbackInput } from '@/types/feedback';
 import type {
+  BloodPressureEntry,
+  BloodPressureInput,
   Entry,
   EntryKind,
   FoodEntry,
@@ -128,15 +130,17 @@ function mkGlucose(
 }
 
 let foodEntries: FoodEntry[] = [
-  mkFood(9, 12, 30, 'Arroz, feijão, frango grelhado e salada', 'lunch', 65),
-  mkFood(8, 8, 0, 'Pão integral com queijo branco e café com leite', 'breakfast', 40),
-  mkFood(7, 19, 0, 'Macarrão ao molho de tomate com carne moída', 'dinner', 70),
-  mkFood(6, 16, 0, 'Fruta (maçã) e castanhas', 'snack', 20),
-  mkFood(4, 19, 30, 'Sopa de legumes com frango desfiado', 'dinner', 35),
-  mkFood(2, 12, 45, 'Peixe grelhado, purê de batata e legumes', 'lunch', 45),
+  mkFood(9, 12, 30, 'Arroz, feijão, frango grelhado e salada', 'lunch', 65, 610),
+  mkFood(8, 8, 0, 'Pão integral com queijo branco e café com leite', 'breakfast', 40, 330),
+  mkFood(7, 19, 0, 'Macarrão ao molho de tomate com carne moída', 'dinner', 70, 640),
+  mkFood(6, 16, 0, 'Fruta (maçã) e castanhas', 'snack', 20, 190),
+  mkFood(4, 19, 30, 'Sopa de legumes com frango desfiado', 'dinner', 35, 280),
+  mkFood(2, 12, 45, 'Peixe grelhado, purê de batata e legumes', 'lunch', 45, 470),
+  mkFood(0, 7, 30, 'Pão francês com manteiga e café com leite', 'breakfast', 64, 400),
+  mkFood(0, 12, 20, 'Arroz, feijão, frango grelhado e salada', 'lunch', 58, 590),
 ];
 
-function mkFood(day: number, hour: number, minute: number, description: string, mealType: FoodEntry['mealType'], carbs: number): FoodEntry {
+function mkFood(day: number, hour: number, minute: number, description: string, mealType: FoodEntry['mealType'], carbs: number, kcal?: number): FoodEntry {
   const createdAt = daysAgo(day, hour, minute);
   return {
     id: id(),
@@ -148,7 +152,26 @@ function mkFood(day: number, hour: number, minute: number, description: string, 
     kind: 'food',
     mealType,
     estimatedCarbs: carbs,
+    estimatedCalories: kcal,
+    nutritionMethod: kcal ? 'table' : undefined,
   };
+}
+
+let bloodPressureEntries: BloodPressureEntry[] = [
+  mkBp(9, 8, 5, 132, 85, 74),
+  mkBp(8, 8, 10, 128, 82, 72, 'before'),
+  mkBp(7, 20, 30, 124, 80, 70, 'after'),
+  mkBp(6, 8, 0, 130, 84, 75),
+  mkBp(5, 8, 15, 126, 81, 71, 'before'),
+  mkBp(3, 8, 0, 122, 79, 69),
+  mkBp(2, 20, 10, 127, 82, 73, 'after'),
+  mkBp(1, 8, 5, 125, 80, 70),
+  mkBp(0, 7, 50, 123, 79, 68, 'before', 'photo'),
+];
+
+function mkBp(day: number, hour: number, minute: number, systolic: number, diastolic: number, heartRate?: number, medicationTiming?: BloodPressureEntry['medicationTiming'], method: BloodPressureEntry['method'] = 'manual'): BloodPressureEntry {
+  const createdAt = daysAgo(day, hour, minute);
+  return { id: id(), userId: DEMO_USER.uid, createdAt, updatedAt: createdAt, kind: 'bloodPressure', systolic, diastolic, heartRate, medicationTiming, method };
 }
 
 let medicationEntries: MedicationEntry[] = [
@@ -193,7 +216,7 @@ let prescriptions: Prescription[] = [
 ];
 
 function allEntries(): Entry[] {
-  return [...glucoseEntries, ...foodEntries, ...medicationEntries].sort(
+  return [...glucoseEntries, ...foodEntries, ...medicationEntries, ...bloodPressureEntries].sort(
     (a, b) => b.createdAt.getTime() - a.createdAt.getTime(),
   );
 }
@@ -206,8 +229,17 @@ export const entryRepository: EntryRepository = {
     return () => {};
   },
 
-  async listInRange(_userId, from, to) {
-    return allEntries().filter((e) => e.createdAt >= from && e.createdAt <= to);
+  async listInRange(_userId, from, to, kinds) {
+    return allEntries().filter((e) => e.createdAt >= from && e.createdAt <= to && (!kinds || kinds.includes(e.kind)));
+  },
+
+  async createBloodPressure(_userId, input: BloodPressureInput) {
+    const createdAt = input.measuredAt;
+    bloodPressureEntries = [{ id: id(), userId: DEMO_USER.uid, createdAt, updatedAt: new Date(), kind: 'bloodPressure', ...input }, ...bloodPressureEntries];
+  },
+
+  async updateBloodPressure(_userId, entryId, input: BloodPressureInput) {
+    bloodPressureEntries = bloodPressureEntries.map((e) => (e.id === entryId ? { ...e, ...input, createdAt: input.measuredAt, updatedAt: new Date() } : e));
   },
 
   async get(_userId, kind, entryId) {
@@ -246,6 +278,9 @@ export const entryRepository: EntryRepository = {
         kind: 'food',
         mealType: input.mealType,
         estimatedCarbs: input.estimatedCarbs,
+        estimatedCalories: input.estimatedCalories,
+        nutritionItems: input.nutritionItems,
+        nutritionMethod: input.nutritionMethod,
       },
       ...foodEntries,
     ];
@@ -299,6 +334,7 @@ export const entryRepository: EntryRepository = {
     if (kind === 'glucose') glucoseEntries = glucoseEntries.filter((e) => e.id !== entryId);
     if (kind === 'food') foodEntries = foodEntries.filter((e) => e.id !== entryId);
     if (kind === 'medication') medicationEntries = medicationEntries.filter((e) => e.id !== entryId);
+    if (kind === 'bloodPressure') bloodPressureEntries = bloodPressureEntries.filter((e) => e.id !== entryId);
   },
 };
 
@@ -501,24 +537,6 @@ export const feedbackPromptStore = {
   },
 };
 
-// ─── journeyPreferencesRepository ("Minha jornada" goal) ─────────────────────
-
-// No goal saved: the journey card shows the suggested goal (200 days).
-const journeyGoals: { goalDaysPerYear: number | null; goalsByYear: Record<string, number> } = {
-  goalDaysPerYear: null,
-  goalsByYear: {},
-};
-
-export const journeyPreferencesRepository = {
-  async get(_userId: string) {
-    return { goalDaysPerYear: journeyGoals.goalDaysPerYear, goalsByYear: { ...journeyGoals.goalsByYear } };
-  },
-  async saveGoal(_userId: string, year: number, goalDays: number) {
-    journeyGoals.goalDaysPerYear = goalDays;
-    journeyGoals.goalsByYear[String(year)] = goalDays;
-  },
-};
-
 // ─── usageStore ──────────────────────────────────────────────────────────────
 
 let usage: AiCloudUsage = { used: 3, limit: 50, remaining: 47 };
@@ -578,12 +596,27 @@ export const aiService: AiService = {
     bumpUsage();
     return {
       foods: [
-        { name: 'Arroz branco', quantity: '1 porção média' },
-        { name: 'Feijão carioca', quantity: '1 concha' },
-        { name: 'Frango grelhado', quantity: '1 filé' },
+        { name: 'Arroz branco', quantity: '4 colheres de sopa', amount: 4, measure: 'colher_sopa', confidence: 'high' },
+        { name: 'Feijão carioca', quantity: '1 concha', amount: 1, measure: 'concha', confidence: 'medium' },
+        { name: 'Frango grelhado', quantity: '1 filé', amount: 1, measure: 'file', confidence: 'high' },
+        { name: 'Farofa de bacon', quantity: null, amount: null, measure: null, confidence: 'low' },
       ],
       uncertainFoods: [],
       observation: MEAL_ANALYSIS,
+    };
+  },
+
+  async readMealText(): Promise<MealReading> {
+    await wait(400);
+    bumpUsage();
+    return {
+      foods: [
+        { name: 'pão francês', quantity: '2 pães', amount: 2, measure: 'unidade', confidence: 'high' },
+        { name: 'manteiga', quantity: null, amount: null, measure: null, confidence: 'low' },
+        { name: 'café com leite', quantity: '1 xícara', amount: 1, measure: 'xicara', confidence: 'high' },
+      ],
+      uncertainFoods: [],
+      observation: '',
     };
   },
 
@@ -672,5 +705,51 @@ export const aiService: AiService = {
         'Um registro de 65 mg/dL antes de dormir.',
       ],
     };
+  },
+};
+
+// ---- Added for the design-system harness (services/index.ts grew since this demo was written) ----
+import { createTelemetry } from '@/telemetry';
+import type { JourneyPreferencesRepository } from '@/services/preferences/journeyPreferencesRepository';
+import type { ModulePreferences, ModulePreferencesRepository } from '@/services/preferences/modulePreferencesRepository';
+
+const noStorage = { getItem: () => null, setItem: () => undefined, removeItem: () => undefined };
+export const telemetry = createTelemetry({
+  enabled: false,
+  storage: noStorage as never,
+  sessionStorage: noStorage as never,
+  endpoint: '/demo/analytics',
+  getToken: async () => null,
+  client: { app: 'demo', app_version: 'demo', platform: 'web' },
+} as never);
+export const track = telemetry.track;
+
+let journeyGoal: { year: number; goalDays: number } | null = null;
+export const journeyPreferencesRepository: JourneyPreferencesRepository = {
+  async get() {
+    return journeyGoal ? { goalDaysPerYear: journeyGoal.goalDays, goalsByYear: { [String(journeyGoal.year)]: journeyGoal.goalDays } } : null;
+  },
+  async saveGoal(_u, year, goalDays) {
+    journeyGoal = { year, goalDays };
+  },
+};
+const modulePrefs: ModulePreferences = { bloodPressure: true };
+export const modulePreferencesRepository: ModulePreferencesRepository = {
+  async get() {
+    return { ...modulePrefs };
+  },
+  async setBloodPressure(_u, enabled) {
+    modulePrefs.bloodPressure = enabled;
+  },
+};
+
+import type { NutritionGoals, NutritionGoalsRepository } from '@/services/preferences/nutritionGoalsRepository';
+let nutritionGoals: NutritionGoals = { dailyCaloriesGoal: 1800, carbsPerMealGoal: 60 };
+export const nutritionGoalsRepository: NutritionGoalsRepository = {
+  async get() {
+    return { ...nutritionGoals };
+  },
+  async save(_u, goals) {
+    nutritionGoals = { ...goals };
   },
 };

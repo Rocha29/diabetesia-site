@@ -12,6 +12,34 @@ export interface RoadmapItem {
 // confirmar a publicação. Sem alegações médicas.
 export const roadmapItems: RoadmapItem[] = [
   {
+    id: 'pressure',
+    title: 'Pressão arterial',
+    description:
+      'Registre a pressão digitando ou por foto do aparelho (você confere os números antes de salvar), com histórico, gráfico da semana, do mês e do ano, e o momento em relação ao remédio. O app mostra só os números: não classifica a pressão.',
+    status: 'wip',
+  },
+  {
+    id: 'nutrition',
+    title: 'Carboidratos e calorias da refeição',
+    description:
+      'A IA lista os alimentos e as porções em medidas caseiras (colheres, conchas, unidades). Você confere e o app calcula uma faixa de carboidratos e calorias com a tabela oficial do IBGE, baseada na TACO (NEPA/UNICAMP). É uma estimativa: não deve ser usada para calcular insulina.',
+    status: 'wip',
+  },
+  {
+    id: 'goals',
+    title: 'Metas de calorias e de carboidratos',
+    description:
+      'Metas opcionais que você define junto com seu médico ou nutricionista: calorias por dia e carboidratos por refeição. A tela inicial mostra o total do dia, sem alarmes.',
+    status: 'wip',
+  },
+  {
+    id: 'accessibility',
+    title: 'Novo visual, mais fácil de ler',
+    description:
+      'Letras maiores, mais contraste, botões maiores e cores fáceis de distinguir para quem tem daltonismo. A situação da glicemia aparece com forma, palavra e cor, nunca só pela cor. Dá para escolher o tamanho do texto.',
+    status: 'wip',
+  },
+  {
     id: 'reminders',
     title: 'Lembretes',
     description:
