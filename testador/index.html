@@ -1,0 +1,167 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="theme-color" content="#0f6e66" />
+    <meta property="og:locale" content="pt_BR" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Guia do Testador — DiabetesIA</title>
+    <meta name="description" content="Passo a passo para quem foi convidado a testar o DiabetesIA no Android: Tailscale, instalação pelo App Tester, primeiro acesso e lembretes." />
+    <link rel="canonical" href="https://rocha29.github.io/diabetesia-site/testador/" />
+    <link rel="icon" type="image/svg+xml" href="../favicon.svg" />
+    <meta name="robots" content="noindex" />
+    <link rel="stylesheet" href="/src/styles/guide.css" />
+  </head>
+  <body>
+    <main class="legal-wrap">
+      <a class="back-link" href="../">&larr; Voltar para o site</a>
+      <h1>Bem-vindo ao teste do DiabetesIA</h1>
+      <p class="guide-lead">
+        Obrigado por testar. O DiabetesIA ajuda a registrar glicemia, pressão, refeições, remédios e
+        lembretes do dia a dia. Este guia leva uns <strong>10 minutos</strong> e é feito
+        <strong>uma vez só</strong>.
+      </p>
+
+      <div class="guide-box">
+        <h2>Você vai precisar de</h2>
+        <ul>
+          <li>um <strong>celular Android</strong>;</li>
+          <li>a <strong>conta Google</strong> que está nesse celular, a mesma que você passou para quem te convidou;</li>
+          <li>internet (Wi-Fi ou dados móveis).</li>
+        </ul>
+        <h2>Vão chegar dois e-mails</h2>
+        <ul class="mail-list">
+          <li><strong>Tailscale</strong>Dá acesso ao servidor do app</li>
+          <li><strong>Firebase App Distribution</strong>Para instalar o app</li>
+        </ul>
+        <p>Se um deles não chegar, olhe a caixa de <strong>spam</strong>.</p>
+      </div>
+
+      <section class="step">
+        <div class="step-num" aria-hidden="true">1</div>
+        <div class="step-body">
+          <h2>Instalar o Tailscale, a "chave" de acesso</h2>
+          <p>
+            O DiabetesIA ainda está em teste, e as telas dele ficam num servidor particular. O
+            <strong>Tailscale</strong> é um app gratuito que dá ao seu celular acesso só a esse servidor. Ele
+            não mexe nas suas outras coisas e não lê o que você faz na internet.
+          </p>
+          <ol>
+            <li>Na <strong>Play Store</strong>, instale o app <strong>Tailscale</strong>.</li>
+            <li>Abra o e-mail do Tailscale e toque em <strong>Accept invite</strong> (Aceitar convite).</li>
+            <li>Entre com a sua <strong>conta Google</strong>.</li>
+            <li>Abra o app <strong>Tailscale</strong>, toque em <strong>Connect</strong> e aceite o pedido para criar a VPN (<strong>OK</strong> ou <strong>Permitir</strong>). Isso só autoriza o Tailscale.</li>
+            <li>Quando estiver ligado, aparece uma <strong>chave</strong> ou <strong>"VPN"</strong> no topo da tela do celular.</li>
+          </ol>
+          <p class="note">
+            <strong>Importante:</strong> o Tailscale precisa estar <strong>ligado</strong> sempre que você for
+            usar o DiabetesIA. Pode deixar ligado direto: ele gasta pouca bateria.
+          </p>
+        </div>
+      </section>
+
+      <section class="step">
+        <div class="step-num" aria-hidden="true">2</div>
+        <div class="step-body">
+          <h2>Instalar o DiabetesIA</h2>
+          <ol>
+            <li>Abra o e-mail do <strong>Firebase App Distribution</strong> e toque em <strong>Começar</strong> ou <strong>Aceitar convite</strong>.</li>
+            <li>Siga as instruções para instalar o app <strong>Firebase App Tester</strong>. É por ele que o DiabetesIA chega e se atualiza.</li>
+            <li>No <strong>App Tester</strong>, toque em <strong>DiabetesIA V2</strong> &rarr; <strong>Baixar</strong>.</li>
+            <li>O Android vai avisar que o app vem de "fonte desconhecida". Toque em <strong>Configurações</strong> &rarr; ative <strong>Permitir desta fonte</strong> &rarr; volte e toque em <strong>Instalar</strong>.</li>
+          </ol>
+          <p>Esse aviso aparece porque o app ainda não está na Play Store. É esperado.</p>
+        </div>
+      </section>
+
+      <section class="step">
+        <div class="step-num" aria-hidden="true">3</div>
+        <div class="step-body">
+          <h2>Primeira vez no app</h2>
+          <ol>
+            <li>Confira que o <strong>Tailscale está ligado</strong>.</li>
+            <li>Abra o <strong>DiabetesIA V2</strong>.</li>
+            <li>Toque em <strong>Entrar com Google</strong> e escolha a sua conta.</li>
+            <li>Leia e aceite os termos de uso e privacidade.</li>
+            <li>Quando o app pedir para <strong>enviar notificações</strong>, toque em <strong>Permitir</strong>. É assim que os lembretes chegam.</li>
+          </ol>
+        </div>
+      </section>
+
+      <section class="step">
+        <div class="step-num" aria-hidden="true">4</div>
+        <div class="step-body">
+          <h2>Lembretes tocarem com o app fechado</h2>
+          <p>Sem estes ajustes, o Android pode "dormir" o app e os lembretes não tocam. Os nomes mudam um pouco de celular para celular.</p>
+          <ol>
+            <li>Abra <strong>Configurações</strong> do celular &rarr; <strong>Apps</strong> &rarr; <strong>DiabetesIA V2</strong>.</li>
+            <li><strong>Notificações:</strong> deixe <strong>ativado</strong>.</li>
+            <li><strong>Alarmes e lembretes</strong> (às vezes fica em "Permissões especiais"): deixe <strong>ativado</strong>.</li>
+            <li><strong>Bateria</strong> ou <strong>Economia de bateria:</strong> escolha <strong>Sem restrições</strong>.</li>
+            <li><strong>Celulares Xiaomi, Redmi e POCO:</strong> ative também <strong>Início automático</strong>.</li>
+          </ol>
+          <p><strong>Para testar:</strong> crie um lembrete para daqui a 2 minutos, feche o app (tire da lista de recentes) e espere a notificação.</p>
+        </div>
+      </section>
+
+      <section>
+        <h2>Usando no dia a dia</h2>
+        <ul>
+          <li><strong>Ligue o Tailscale</strong> antes de abrir o app.</li>
+          <li><strong>Atualizações:</strong> a maioria chega sozinha, ao abrir o app. Quando sair uma versão nova do app, o <strong>App Tester</strong> avisa: abra o App Tester e toque em <strong>Atualizar</strong>. Seus dados continuam lá.</li>
+          <li><strong>Seus dados</strong> ficam na sua conta Google, separados dos outros testadores. Ninguém além de você vê seus registros.</li>
+          <li><strong>Tamanho do texto e aparência:</strong> em <strong>Configurações</strong>, dentro do app.</li>
+        </ul>
+        <p class="medical">
+          O DiabetesIA <strong>não substitui</strong> orientação médica. As estimativas de calorias e de
+          carboidratos são aproximadas. <strong>Não use esses valores para calcular insulina.</strong>
+        </p>
+      </section>
+
+      <section>
+        <h2>Se algo der errado</h2>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr><th scope="col">O que aparece</th><th scope="col">O que fazer</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>"Sem conexão com o DiabetesIA"</td><td>Ligue o <strong>Tailscale</strong>, espere uns segundos e toque em <strong>Tentar de novo</strong>. Se continuar, avise quem te convidou: o servidor pode estar desligado.</td></tr>
+              <tr><td>Tela branca</td><td>Feche o app (tire dos recentes) e abra de novo. Se continuar: <strong>Configurações &rarr; Apps &rarr; DiabetesIA V2 &rarr; Armazenamento &rarr; Limpar cache</strong>.</td></tr>
+              <tr><td>Não consigo entrar com o Google</td><td>Confira se a conta Google do celular está ativa e tente de novo.</td></tr>
+              <tr><td>Lembrete não tocou</td><td>Refaça o passo 4. Abra o app de vez em quando: se ele ficar mais de 7 dias fechado, os lembretes param até você abrir de novo.</td></tr>
+              <tr><td>O e-mail não chegou</td><td>Olhe o <strong>spam</strong>. Se não estiver lá, peça para reenviarem o convite.</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section>
+        <h2>Como ajudar no teste</h2>
+        <p>Sua opinião é o mais importante deste teste. Conte para quem te convidou:</p>
+        <ul>
+          <li>o que foi <strong>difícil</strong> ou <strong>confuso</strong>;</li>
+          <li>o que <strong>não funcionou</strong>. Se puder, mande um <strong>print</strong> da tela e diga o que você estava tentando fazer;</li>
+          <li>o que você <strong>mais usou</strong> e o que <strong>sentiu falta</strong>.</li>
+        </ul>
+        <p>Não mande prints com informações que você não quer compartilhar.</p>
+      </section>
+
+      <section>
+        <h2>Sair do teste</h2>
+        <ol>
+          <li>No app, vá em <strong>Privacidade &rarr; Excluir minha conta</strong>, se quiser apagar os seus dados.</li>
+          <li>Desinstale o <strong>DiabetesIA V2</strong>, o <strong>Firebase App Tester</strong> e, se não usar para mais nada, o <strong>Tailscale</strong>.</li>
+          <li>Avise quem te convidou.</li>
+        </ol>
+      </section>
+
+      <section>
+        <p>
+          Veja também a <a href="../privacidade/">Política de Privacidade</a> e os
+          <a href="../termos/">Termos de Uso</a>. Obrigado por ajudar a construir o DiabetesIA!
+        </p>
+      </section>
+    </main>
+  </body>
+</html>
