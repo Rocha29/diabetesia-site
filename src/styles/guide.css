@@ -1,0 +1,140 @@
+@import './legal.css';
+
+/* Beta tester guide (testador/index.html): numbered setup steps, notes and a troubleshooting table. */
+.guide-lead {
+  font-size: var(--fs-body);
+}
+
+.guide-box {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: var(--space-4);
+  margin-top: var(--space-5);
+}
+
+.guide-box h2 {
+  font-size: var(--fs-body);
+  margin: 0 0 var(--space-2);
+}
+
+.guide-box ul + h2 {
+  margin-top: var(--space-4);
+}
+
+.mail-list {
+  display: grid;
+  gap: var(--space-3);
+  grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr));
+  margin: 0 0 var(--space-3);
+  padding: 0;
+  list-style: none;
+}
+
+.mail-list li {
+  background: var(--surface-alt);
+  border-radius: var(--radius-sm);
+  padding: var(--space-3);
+  margin: 0;
+  color: var(--text-secondary);
+}
+
+.mail-list strong {
+  display: block;
+  color: var(--text-primary);
+}
+
+.step {
+  display: grid;
+  grid-template-columns: 2.75rem 1fr;
+  gap: var(--space-3);
+  align-items: start;
+}
+
+.step-num {
+  width: 2.75rem;
+  height: 2.75rem;
+  border-radius: 50%;
+  background: var(--accent-primary);
+  color: var(--surface);
+  display: grid;
+  place-items: center;
+  font-family: var(--font-sans);
+  font-weight: 700;
+  font-size: 1.2rem;
+}
+
+.step-body {
+  min-width: 0;
+}
+
+.step-body h2 {
+  margin-top: 0.35rem;
+}
+
+ol {
+  padding-left: var(--space-4);
+  color: var(--text-secondary);
+}
+
+ol strong,
+ul strong,
+p strong {
+  color: var(--text-primary);
+}
+
+.note {
+  background: var(--glucose-high-bg);
+  border-left: 3px solid var(--glucose-high);
+  border-radius: var(--radius-sm);
+  padding: var(--space-3) var(--space-4);
+  color: var(--text-primary);
+}
+
+.medical {
+  border: 2px solid var(--glucose-high);
+  border-radius: var(--radius-sm);
+  padding: var(--space-3) var(--space-4);
+  color: var(--text-primary);
+}
+
+.table-wrap {
+  overflow-x: auto;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  background: var(--surface);
+}
+
+table {
+  border-collapse: collapse;
+  width: 100%;
+  min-width: 30rem;
+}
+
+th,
+td {
+  text-align: left;
+  vertical-align: top;
+  padding: var(--space-3);
+  border-bottom: 1px solid var(--border);
+}
+
+tr:last-child td {
+  border-bottom: 0;
+}
+
+th {
+  font-size: var(--fs-small);
+  color: var(--text-hint);
+  font-weight: 600;
+}
+
+td {
+  color: var(--text-secondary);
+}
+
+td:first-child {
+  color: var(--text-primary);
+  font-weight: 600;
+  width: 38%;
+}

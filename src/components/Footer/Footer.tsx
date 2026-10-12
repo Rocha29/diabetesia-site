@@ -26,6 +26,7 @@ export function Footer() {
           <ul>
             <li><a href="privacidade/">Política de Privacidade</a></li>
             <li><a href="termos/">Termos de Uso</a></li>
+            <li><a href="testador/">Guia do testador</a></li>
           </ul>
         </nav>
 
