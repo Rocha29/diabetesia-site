@@ -1,34 +1,24 @@
+import type { CSSProperties } from 'react';
 import styles from './PhoneFrame.module.css';
 import type { Screen } from '../../data/screens';
+import { Shot } from '../Shot/Shot';
 
 interface PhoneFrameProps {
   screen: Screen;
   eager?: boolean;
-  size?: 'sm' | 'md' | 'lg';
-  caption?: boolean;
+  /** Largura do aparelho em px (o CSS limita em telas pequenas). */
+  width?: number;
+  decorative?: boolean;
+  className?: string;
 }
 
-export function PhoneFrame({ screen, eager = false, size = 'md', caption = true }: PhoneFrameProps) {
+/** Moldura de celular desenhada em CSS em volta de uma captura real do app. */
+export function PhoneFrame({ screen, eager = false, width = 280, decorative = false, className }: PhoneFrameProps) {
   return (
-    <figure className={styles.wrapper}>
-      <div className={`${styles.phone} ${styles[size]}`}>
-        <div className={styles.notch} aria-hidden="true" />
-        <div className={styles.screen}>
-          <picture>
-            {screen.webp && <source srcSet={screen.webp} type="image/webp" />}
-            <img
-              src={screen.png || screen.webp}
-              width={390}
-              height={844}
-              alt={screen.alt}
-              loading={eager ? 'eager' : 'lazy'}
-              decoding="async"
-              fetchPriority={eager ? 'high' : undefined}
-            />
-          </picture>
-        </div>
+    <div className={`${styles.phone} ${className ?? ''}`} style={{ '--w': `${width}px` } as CSSProperties}>
+      <div className={styles.screen}>
+        <Shot screen={screen} eager={eager} decorative={decorative} />
       </div>
-      {caption && <figcaption className={styles.caption}>Telas reais do app com dados de demonstração</figcaption>}
-    </figure>
+    </div>
   );
 }

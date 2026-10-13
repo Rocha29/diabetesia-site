@@ -1,16 +1,28 @@
 @import './tokens.css';
 
-* {
+*,
+*::before,
+*::after {
   box-sizing: border-box;
 }
 
 html {
   scroll-behavior: smooth;
+  scroll-padding-top: 88px;
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
 }
 
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
   }
 }
 
@@ -20,40 +32,50 @@ body {
   color: var(--text-primary);
   font-family: var(--font-body);
   font-size: var(--fs-body);
-  line-height: 1.55;
+  line-height: 1.6;
   -webkit-font-smoothing: antialiased;
+  overflow-x: clip;
 }
 
-h1, h2, h3, h4 {
+h1,
+h2,
+h3,
+h4 {
   font-family: var(--font-sans);
-  font-weight: 700;
-  line-height: 1.15;
+  font-weight: 800;
+  line-height: 1.12;
+  letter-spacing: -0.015em;
   margin: 0;
+  text-wrap: balance;
 }
 
 h1 { font-size: var(--fs-h1); }
 h2 { font-size: var(--fs-h2); }
-h3 { font-size: var(--fs-h3); }
+h3 { font-size: var(--fs-h3); font-weight: 700; letter-spacing: -0.005em; }
 
-p { margin: 0; }
+p { margin: 0; text-wrap: pretty; }
 
 a {
   color: var(--accent-secondary);
+  text-underline-offset: 0.18em;
 }
 
 img {
   max-width: 100%;
   display: block;
+  height: auto;
 }
 
 button {
   font-family: inherit;
+  font-size: inherit;
   cursor: pointer;
 }
 
 :focus-visible {
-  outline: 2px solid var(--accent-secondary);
-  outline-offset: 2px;
+  outline: 3px solid var(--accent-secondary);
+  outline-offset: 3px;
+  border-radius: 6px;
 }
 
 .container {
@@ -68,10 +90,11 @@ button {
   left: -9999px;
   top: 0;
   background: var(--accent-primary);
-  color: #fff;
+  color: var(--on-accent);
   padding: var(--space-2) var(--space-3);
   z-index: 100;
   border-radius: var(--radius-sm);
+  font-weight: 700;
 }
 
 .skip-link:focus {
@@ -88,36 +111,134 @@ button {
   white-space: nowrap;
 }
 
-/* Reveal ao rolar: conteúdo nasce visível; JS só adiciona a classe "revealed" quando já está animado.
-   Nunca ocultamos via opacity:0 fixo no CSS base — só dentro do bloco reduced-motion abaixo. */
-@media (prefers-reduced-motion: no-preference) {
-  .reveal {
-    opacity: 0;
-    transform: translateY(8px);
-    transition: opacity 300ms ease-out, transform 300ms ease-out;
-  }
-  .reveal.revealed {
-    opacity: 1;
-    transform: translateY(0);
+/* ---------- Blocos de seção reutilizados ---------- */
+
+.section {
+  padding: var(--space-7) 0;
+}
+
+@media (min-width: 1024px) {
+  .section {
+    padding: var(--space-8) 0;
   }
 }
 
-.badge-wip {
-  display: inline-block;
-  background: var(--surface-alt);
-  border: 1px solid var(--border);
+.section-head {
+  max-width: 760px;
+  margin-bottom: var(--space-6);
+}
+
+.section-head.center {
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+}
+
+.section-head h2 + p {
+  margin-top: var(--space-3);
   color: var(--text-secondary);
-  font-size: var(--fs-small);
-  padding: var(--space-1) var(--space-3);
+  font-size: var(--fs-lead);
+}
+
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--accent-secondary);
+  margin-bottom: var(--space-3);
+}
+
+.eyebrow::before {
+  content: '';
+  width: 18px;
+  height: 3px;
+  border-radius: 3px;
+  background: currentColor;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  min-height: 52px;
+  padding: 0 var(--space-4);
   border-radius: var(--radius-pill);
-  font-weight: 600;
+  font-weight: 700;
+  font-size: 1.05rem;
+  text-decoration: none;
+  border: 2px solid transparent;
+  transition: transform 160ms var(--ease-out), background-color 160ms, box-shadow 160ms;
+}
+
+.btn svg {
+  width: 20px;
+  height: 20px;
+}
+
+.btn-primary {
+  background: var(--accent-primary);
+  color: var(--on-accent);
+  box-shadow: 0 10px 24px -10px rgba(21, 101, 192, 0.7);
+}
+
+.btn-primary:hover {
+  background: var(--accent-primary-dark);
+  transform: translateY(-1px);
+}
+
+.btn-ghost {
+  background: var(--surface);
+  color: var(--text-primary);
+  border-color: var(--border-strong);
+}
+
+.btn-ghost:hover {
+  border-color: var(--accent-secondary);
+  color: var(--accent-secondary);
+}
+
+.pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 12px;
+  border-radius: var(--radius-pill);
+  background: var(--accent-soft);
+  color: var(--accent-on-soft);
+  font-size: 0.875rem;
+  font-weight: 700;
+  line-height: 1.5;
 }
 
 .disclaimer {
-  background: var(--surface-alt);
-  border-left: 3px solid var(--accent-primary);
+  display: flex;
+  gap: var(--space-3);
+  align-items: flex-start;
+  background: var(--surface);
+  border: 1px solid var(--border);
   padding: var(--space-4);
-  border-radius: var(--radius-sm);
+  border-radius: var(--radius-md);
   color: var(--text-secondary);
   font-size: var(--fs-small);
+}
+
+/* ---------- Revelar ao rolar ----------
+   O conteúdo nasce visível. Só escondemos quando o JS marcou <html class="js-reveal">
+   (ou seja, o observador está ativo) e o usuário não pediu menos movimento. */
+@media (prefers-reduced-motion: no-preference) {
+  .js-reveal .reveal {
+    opacity: 0;
+    transform: translateY(18px);
+    transition: opacity 600ms var(--ease-out), transform 600ms var(--ease-out);
+    transition-delay: var(--reveal-delay, 0ms);
+  }
+  .js-reveal .reveal.revealed {
+    opacity: 1;
+    transform: none;
+  }
 }

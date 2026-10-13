@@ -1,37 +1,66 @@
 import styles from './Security.module.css';
-import { IconLock, IconCloud } from '../Icons';
-import { DISCLAIMER } from '../../data/nav';
+import { IconLock, IconEye, IconCheck, IconShield, IconDocument, IconUserX } from '../Icons';
 
 const items = [
-  'Seus dados ficam no Firebase (Google), numa área acessível só pela sua própria conta.',
-  'As chaves de inteligência artificial ficam apenas no nosso servidor, nunca no aplicativo.',
-  'Os registros do servidor não guardam o conteúdo das fotos e dos textos enviados.',
-  'Na versão web, as fotos não são guardadas; no Android, elas ficam no próprio celular.',
-  'A IA na nuvem recebe apenas a foto e o texto da análise, sem seu nome ou e-mail.',
+  {
+    icon: IconLock,
+    title: 'Seus dados, sua conta',
+    text: 'Os registros ficam numa área ligada à sua conta, acessível só por você.',
+  },
+  {
+    icon: IconEye,
+    title: 'Compartilhar é escolha sua',
+    text: 'Só quem você convidar acompanha, e apenas para leitura. Você remove quando quiser.',
+  },
+  {
+    icon: IconCheck,
+    title: 'Você confere antes de salvar',
+    text: 'O que a IA leu numa foto aparece para você revisar. Nada entra no histórico sem a sua confirmação.',
+  },
+  {
+    icon: IconShield,
+    title: 'IA sem saber quem é você',
+    text: 'Na leitura por foto, a IA recebe a imagem ou o texto da análise, sem o seu nome nem o seu e-mail. O uso da IA tem consentimento separado.',
+  },
+  {
+    icon: IconDocument,
+    title: 'Seus dados com você',
+    text: 'Veja e exporte seus dados quando quiser, pelas opções de Privacidade do app.',
+  },
+  {
+    icon: IconUserX,
+    title: 'Saída fácil',
+    text: 'Apague registros ou exclua a conta direto no app.',
+  },
 ];
 
 export function Security() {
   return (
-    <section className={styles.section} aria-labelledby="security-title">
-      <div className={`container ${styles.grid}`}>
-        <div>
-          <h2 id="security-title">Privacidade e segurança</h2>
-          <ul className={styles.list}>
-            {items.map((text) => (
-              <li key={text}>{text}</li>
-            ))}
-          </ul>
-          <p className={styles.links}>
-            Saiba mais:{' '}
-            <a href="privacidade/">Política de Privacidade</a> e{' '}
-            <a href="termos/">Termos de Uso</a>.
+    <section id="privacidade" className={`section ${styles.section}`} aria-labelledby="privacidade-title">
+      <div className="container">
+        <div className="section-head reveal">
+          <p className="eyebrow">Privacidade e segurança</p>
+          <h2 id="privacidade-title">Dado de saúde é assunto sério.</h2>
+          <p>
+            Por isso o DiabetesIA pede só o necessário e deixa você no controle. Este site não usa
+            cookies nem rastreadores de terceiros.
           </p>
-          <p className={`disclaimer ${styles.disclaimer}`}>{DISCLAIMER}</p>
         </div>
-        <div className={styles.art} aria-hidden="true">
-          <IconLock className={styles.icon} />
-          <IconCloud className={styles.icon} />
-        </div>
+        <ul className={styles.grid}>
+          {items.map(({ icon: Icon, title, text }) => (
+            <li key={title} className={`${styles.card} reveal`}>
+              <span className={styles.icon}>
+                <Icon />
+              </span>
+              <h3>{title}</h3>
+              <p>{text}</p>
+            </li>
+          ))}
+        </ul>
+        <p className={styles.links}>
+          Saiba mais na <a href="privacidade/">Política de Privacidade</a> e nos{' '}
+          <a href="termos/">Termos de Uso</a>.
+        </p>
       </div>
     </section>
   );

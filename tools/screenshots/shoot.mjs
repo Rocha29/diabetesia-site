@@ -78,15 +78,74 @@ async function scrollToHeading(page, pattern, offset = 70) {
   await new Promise((r) => setTimeout(r, 300));
 }
 
-// ---- home: Alimentação de hoje with the meals open ----
+// ---- home: carousel moved to the "Alimentação de hoje" card ----
 {
   const page = await newPage();
   await goto(page, '/home');
   await new Promise((r) => setTimeout(r, 800));
-  await clickButton(page, /Ver refeições/i);
-  await new Promise((r) => setTimeout(r, 300));
-  await scrollToHeading(page, /Alimentação de hoje/, 60);
+  for (let i = 0; i < 5; i++) {
+    const onFood = await page.evaluate(() => {
+      const track = document.querySelector('[aria-roledescription="carrossel"] [tabindex="0"]');
+      if (!track) return true;
+      const cards = [...track.children];
+      const idx = Math.round(track.scrollLeft / (cards[0]?.getBoundingClientRect().width + 12 || 1));
+      return /Alimentação de hoje/.test(cards[idx]?.textContent || '');
+    });
+    if (onFood) break;
+    await page.click('button[aria-label="Próximo cartão"]').catch(() => {});
+    await new Promise((r) => setTimeout(r, 700));
+  }
   await shoot(page, 'nutrition');
+  await page.close();
+}
+
+// ---- Quem me acompanha (owner) ----
+{
+  const page = await newPage();
+  await goto(page, '/quem-me-acompanha');
+  await new Promise((r) => setTimeout(r, 800));
+  await shoot(page, 'sharing');
+  await page.close();
+}
+
+// ---- Quem eu acompanho: a followed person, read-only ----
+{
+  const page = await newPage();
+  await goto(page, '/quem-eu-acompanho/pessoa/sa_00000000000000b1');
+  await new Promise((r) => setTimeout(r, 1200));
+  await shoot(page, 'following');
+  await page.close();
+}
+
+// ---- Mais (bottom bar tab) ----
+{
+  const page = await newPage();
+  await goto(page, '/mais');
+  await new Promise((r) => setTimeout(r, 600));
+  await shoot(page, 'more');
+  await page.close();
+}
+
+// ---- assistant: guided reminder, confirmation card (no AI) ----
+{
+  const page = await newPage();
+  await goto(page, '/ai');
+  await new Promise((r) => setTimeout(r, 600));
+  await clickButton(page, /Criar lembrete de remédio/i);
+  await new Promise((r) => setTimeout(r, 300));
+  const input = await page.$('form input');
+  if (input) {
+    await input.type('Losartana 50 mg');
+    await page.keyboard.press('Enter');
+  }
+  await new Promise((r) => setTimeout(r, 300));
+  await clickButton(page, /^1 comprimido$/);
+  await new Promise((r) => setTimeout(r, 300));
+  await clickButton(page, /^20:00$/);
+  await new Promise((r) => setTimeout(r, 300));
+  await clickButton(page, /^Todos os dias$/);
+  await new Promise((r) => setTimeout(r, 800));
+  await shoot(page, 'assistant');
   await page.close();
 }
 

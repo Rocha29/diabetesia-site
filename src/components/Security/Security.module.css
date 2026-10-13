@@ -1,53 +1,67 @@
 .section {
-  padding: var(--space-7) 0;
+  background:
+    radial-gradient(50% 60% at 90% 10%, var(--hero-glow-1), transparent 70%),
+    var(--bg);
 }
 
 .grid {
-  display: flex;
-  flex-direction: column-reverse;
-  gap: var(--space-6);
-  align-items: center;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: var(--space-3);
 }
 
-.list {
-  margin: var(--space-4) 0 0;
-  padding-left: var(--space-4);
-  color: var(--text-secondary);
-}
-
-.list li {
-  margin-bottom: var(--space-2);
-}
-
-.links {
-  margin-top: var(--space-4);
-}
-
-.disclaimer {
-  margin-top: var(--space-4);
-}
-
-.art {
-  display: flex;
-  gap: var(--space-5);
-  color: var(--accent-primary);
+.card {
+  padding: var(--space-4);
+  border-radius: var(--radius-lg);
+  background: var(--surface);
+  border: 1px solid var(--border);
 }
 
 .icon {
-  width: 72px;
-  height: 72px;
+  display: inline-grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 14px;
+  background: var(--accent-soft);
+  color: var(--accent-on-soft);
+  margin-bottom: var(--space-3);
+}
+
+.icon svg {
+  width: 24px;
+  height: 24px;
+}
+
+.card h3 {
+  font-size: 1.2rem;
+  margin-bottom: 6px;
+}
+
+.card p {
+  color: var(--text-secondary);
+}
+
+.links {
+  margin-top: var(--space-5);
+  color: var(--text-secondary);
+}
+
+.links a {
+  font-weight: 700;
+}
+
+@media (min-width: 680px) {
+  .grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-4);
+  }
 }
 
 @media (min-width: 1024px) {
   .grid {
-    flex-direction: row;
-    align-items: flex-start;
-  }
-  .grid > div:first-child {
-    flex: 1;
-  }
-  .art {
-    flex: 0 0 auto;
-    padding-top: var(--space-5);
+    grid-template-columns: repeat(3, 1fr);
   }
 }

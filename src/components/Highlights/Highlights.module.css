@@ -1,0 +1,224 @@
+.section {
+  background: linear-gradient(180deg, transparent, var(--bg-elevated) 30%, var(--bg-elevated) 70%, transparent);
+}
+
+.grid {
+  display: grid;
+  gap: var(--space-3);
+  grid-template-columns: 1fr;
+}
+
+.card {
+  --tone: var(--accent-secondary);
+  --tone-soft: var(--accent-soft);
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  border-radius: var(--radius-lg);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow-soft);
+  overflow: hidden;
+  transition: box-shadow 250ms var(--ease-out), transform 250ms var(--ease-out), border-color 250ms;
+}
+
+.card:hover {
+  box-shadow: var(--shadow-card);
+  border-color: var(--border-strong);
+}
+
+.card[data-tone='glucose'] { --tone: var(--cat-glucose); --tone-soft: var(--cat-glucose-soft); }
+.card[data-tone='food'] { --tone: var(--cat-food); --tone-soft: var(--cat-food-soft); }
+.card[data-tone='med'] { --tone: var(--cat-med); --tone-soft: var(--cat-med-soft); }
+.card[data-tone='pressure'] { --tone: var(--cat-pressure); --tone-soft: var(--cat-pressure-soft); }
+
+.body {
+  padding: var(--space-4) var(--space-4) var(--space-3);
+}
+
+.icon {
+  display: inline-grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 14px;
+  background: var(--tone-soft);
+  color: var(--tone);
+  margin-bottom: var(--space-3);
+}
+
+.icon svg {
+  width: 24px;
+  height: 24px;
+}
+
+.body h3 {
+  margin-bottom: var(--space-2);
+}
+
+.body p {
+  color: var(--text-secondary);
+}
+
+.bullets {
+  list-style: none;
+  padding: 0;
+  margin: var(--space-3) 0 0;
+}
+
+.bullets li {
+  display: flex;
+  gap: 8px;
+  align-items: flex-start;
+  font-weight: 600;
+}
+
+.bullets svg {
+  width: 20px;
+  height: 20px;
+  flex: none;
+  margin-top: 3px;
+  color: var(--status-ok);
+}
+
+.status {
+  list-style: none;
+  padding: 0;
+  margin: var(--space-4) 0 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.status li {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 12px;
+  border-radius: var(--radius-pill);
+  border: 2px solid currentColor;
+  font-weight: 700;
+  font-size: 0.95rem;
+}
+
+.status li[data-s='ok'] { color: var(--status-ok); }
+.status li[data-s='high'] { color: var(--status-high); }
+.status li[data-s='low'] { color: var(--status-low); }
+
+.more {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: var(--space-4);
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.more svg {
+  width: 18px;
+  height: 18px;
+  transition: transform 200ms var(--ease-out);
+}
+
+.more:hover svg {
+  transform: translateX(3px);
+}
+
+/* Recorte da tela real, "saindo" do fundo do cartão */
+.peek {
+  position: relative;
+  margin-top: auto;
+  height: 200px;
+  padding: var(--space-3) var(--space-4) 0;
+  display: flex;
+  justify-content: center;
+  overflow: hidden;
+  background: radial-gradient(120% 90% at 50% 100%, var(--tone-soft), transparent 70%);
+}
+
+.peekFrame {
+  position: absolute;
+  top: var(--space-4);
+  left: 50%;
+  transform: translateX(-50%);
+  width: min(300px, calc(100% - 40px));
+  border-radius: 22px 22px 0 0;
+  border: 6px solid var(--phone-bezel);
+  border-bottom: 0;
+  overflow: hidden;
+  background: #f3f4f8;
+  box-shadow: var(--shadow-card);
+  transition: transform 400ms var(--ease-out);
+}
+
+.card:hover .peekFrame {
+  transform: translateX(-50%) translateY(-6px);
+}
+
+.peekImg {
+  display: block;
+}
+
+.peekImg img {
+  width: 100%;
+  margin-top: calc(var(--crop) * -1);
+}
+
+@media (min-width: 680px) {
+  .peek {
+    height: 240px;
+  }
+  .grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-4);
+  }
+  .card[data-size='wide'],
+  .card:last-child {
+    grid-column: span 2;
+  }
+  .card[data-size='wide'] {
+    display: grid;
+    grid-template-columns: 1.1fr 1fr;
+    align-items: stretch;
+  }
+  .card[data-size='wide'] .body {
+    padding: var(--space-5);
+    align-self: center;
+  }
+  .card[data-size='wide'] .peek {
+    height: 100%;
+    min-height: 320px;
+  }
+  .card[data-size='wide'] .peekFrame {
+    top: var(--space-5);
+  }
+}
+
+@media (min-width: 1024px) {
+  .grid {
+    grid-template-columns: repeat(6, 1fr);
+  }
+  .card {
+    grid-column: span 2;
+  }
+  .card[data-size='wide'] {
+    grid-column: span 4;
+  }
+  .card[data-size='tall'] {
+    grid-row: span 2;
+  }
+  .card[data-size='tall'] .peek {
+    flex: 1;
+    height: auto;
+    min-height: 320px;
+  }
+  .card:last-child {
+    grid-column: span 2;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .card:hover .peekFrame {
+    transform: translateX(-50%);
+  }
+}

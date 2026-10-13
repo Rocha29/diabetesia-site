@@ -753,3 +753,57 @@ export const nutritionGoalsRepository: NutritionGoalsRepository = {
     nutritionGoals = { ...goals };
   },
 };
+
+// ─── "Quem me acompanha" (demo) ───────────────────────────────────────────────
+
+import type { SharedAccessRepository } from '@/services/sharedAccess/sharedAccessRepository';
+import type { SharedAccessSummary, SharedEntriesPage } from '@/types/sharedAccess';
+
+const isoAgo = (minutes: number) => new Date(Date.now() - minutes * 60_000).toISOString();
+const todayAt = (h: number, m: number) => {
+  const d = new Date();
+  d.setHours(h, m, 0, 0);
+  return d.toISOString();
+};
+
+const sharedSummary = (): SharedAccessSummary => ({
+  sharedWith: [
+    { id: 'sa_00000000000000a1', label: 'Mãe', status: 'active', createdAt: isoAgo(60 * 24 * 20), expiresAt: null, acceptedAt: isoAgo(60 * 24 * 19), lastViewedAt: isoAgo(95) },
+    { id: 'sa_00000000000000a2', label: 'Dra. Paula (endócrino)', status: 'active', createdAt: isoAgo(60 * 24 * 10), expiresAt: null, acceptedAt: isoAgo(60 * 24 * 9), lastViewedAt: isoAgo(60 * 24 * 3) },
+    { id: 'sa_00000000000000a3', label: 'Pedro (irmão)', status: 'pending', createdAt: isoAgo(60 * 17), expiresAt: new Date(Date.now() + 31 * 3_600_000).toISOString(), acceptedAt: null, lastViewedAt: null },
+  ],
+  following: [
+    { id: 'sa_00000000000000b1', label: 'Pai', since: isoAgo(60 * 24 * 30), lastGlucose: { value: 142, unit: 'mg/dL', context: 'postMeal', at: isoAgo(40) } },
+  ],
+  limit: 5,
+  consentVersion: '2026-10-12',
+});
+
+export const sharedAccessRepository: SharedAccessRepository = {
+  summary: async () => sharedSummary(),
+  cachedSummary: () => sharedSummary(),
+  createInvite: async (label) => ({ id: 'sa_00000000000000c1', label, code: 'K7QM-4TXP', expiresAt: new Date(Date.now() + 48 * 3_600_000).toISOString() }),
+  accept: async (_code, label) => ({ id: 'sa_00000000000000b1', label }),
+  end: async () => {},
+  entries: async (): Promise<SharedEntriesPage> => ({
+    id: 'sa_00000000000000b1',
+    label: 'Pai',
+    from: todayAt(0, 0),
+    to: todayAt(23, 59),
+    entries: [
+      { id: 'g2', kind: 'glucose', at: todayAt(13, 50), value: 142, unit: 'mg/dL', context: 'postMeal' },
+      { id: 'f1', kind: 'food', at: todayAt(12, 40), mealType: 'lunch', description: 'Arroz, feijão, frango grelhado e salada', estimatedCarbs: 62, estimatedCalories: 540 },
+      { id: 'm1', kind: 'medication', at: todayAt(8, 0), medicationName: 'Metformina', dose: '500', unit: 'mg' },
+      { id: 'b1', kind: 'bloodPressure', at: todayAt(7, 20), systolic: 128, diastolic: 82, heartRate: 70, medicationTiming: null },
+      { id: 'g1', kind: 'glucose', at: todayAt(7, 10), value: 98, unit: 'mg/dL', context: 'fasting' },
+    ],
+  }),
+  removeAll: async () => {},
+  clearCache: () => {},
+};
+
+// ─── Relato de bug (demo: nunca cria issue) ───────────────────────────────────
+
+export const bugReportRepository = {
+  submit: async () => ({ number: 0, url: '' }),
+};
