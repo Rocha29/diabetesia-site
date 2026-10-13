@@ -1,36 +1,69 @@
+/* Fonte do app: Atkinson Hyperlegible Next (variável, auto-hospedada via @fontsource — sem requisição a terceiros). */
+@import '@fontsource-variable/atkinson-hyperlegible-next/index.css';
+
+/*
+ * Tokens alinhados ao design system do app (V2).
+ * Contrastes conferidos (WCAG 2.2 AA) para texto normal nos dois temas.
+ * Os nomes antigos (--accent-primary, --glucose-high…) continuam existindo porque
+ * as páginas estáticas (privacidade, termos, testador) também usam estes tokens.
+ */
 :root {
+  color-scheme: light;
+
   /* Superfícies */
-  --bg: #faf8f4;
+  --bg: #f3f4f8;
+  --bg-elevated: #f8f9fc;
   --surface: #ffffff;
-  --surface-alt: #f1efe8;
-  --border: #e4e0d4;
+  --surface-alt: #eaedf3;
+  --border: #dde1e8;
+  --border-strong: #c5cbd6;
 
   /* Texto */
-  --text-primary: #16211f;
-  --text-secondary: #5a655f;
-  --text-hint: #94998f;
+  --text-primary: #1a1a2e;
+  --text-secondary: #4a5160;
+  --text-hint: #5f6675;
 
-  /* Acentos */
-  --accent-primary: #0f6e66;
-  --accent-primary-dark: #0a4f49;
-  --accent-secondary: #2f7fd1;
-  --accent-warm: #d97a3f;
+  /* Marca */
+  --accent-primary: #1565c0; /* fundo de botão, texto branco 5,7:1 */
+  --accent-primary-dark: #0f4f99;
+  --accent-secondary: #1565c0; /* links e texto de destaque */
+  --accent-soft: #dbe8fb;
+  --accent-on-soft: #0b3f80;
+  --on-accent: #ffffff;
 
-  /* Faixas de glicose (ilustrações) */
-  --glucose-low: #c23b3b;
-  --glucose-low-bg: #fbe4e0;
-  --glucose-in-range: #2f8f5b;
-  --glucose-in-range-bg: #e1f1e6;
-  --glucose-high: #c97a1f;
-  --glucose-high-bg: #fbe9d4;
+  /* Categorias do app (texto sobre a cor suave passa AA) */
+  --cat-glucose: #c8161e;
+  --cat-glucose-soft: #fbe3e4;
+  --cat-food: #00784f;
+  --cat-food-soft: #dcf1e8;
+  --cat-med: #6a3ff0;
+  --cat-med-soft: #ece6fe;
+  --cat-pressure: #a8199f;
+  --cat-pressure-soft: #f7e1f5;
 
-  --shadow-soft: 0 2px 10px rgba(22, 33, 31, 0.06);
-  --shadow-card: 0 6px 20px rgba(22, 33, 31, 0.08);
+  /* Situação da glicemia: sempre com forma + palavra + cor */
+  --status-ok: #00784f;
+  --status-high: #8a5300;
+  --status-low: #c8161e;
 
-  --radius-sm: 8px;
-  --radius-md: 14px;
-  --radius-lg: 22px;
-  --radius-pill: 100px;
+  /* Aviso (usado nas páginas legais) */
+  --glucose-high: #8a5300;
+  --glucose-high-bg: #fdf0dc;
+
+  --shadow-soft: 0 1px 2px rgba(26, 26, 46, 0.05), 0 4px 14px rgba(26, 26, 46, 0.05);
+  --shadow-card: 0 2px 6px rgba(26, 26, 46, 0.05), 0 18px 40px -12px rgba(21, 101, 192, 0.18);
+  --shadow-phone: 0 30px 60px -20px rgba(15, 79, 153, 0.35), 0 12px 24px -12px rgba(26, 26, 46, 0.25);
+
+  --hero-glow-1: rgba(21, 101, 192, 0.18);
+  --hero-glow-2: rgba(106, 63, 240, 0.12);
+  --hero-glow-3: rgba(0, 120, 79, 0.10);
+  --phone-bezel: #14141f;
+
+  --radius-sm: 10px;
+  --radius-md: 16px;
+  --radius-lg: 24px;
+  --radius-xl: 32px;
+  --radius-pill: 999px;
   --space-1: 4px;
   --space-2: 8px;
   --space-3: 12px;
@@ -38,44 +71,75 @@
   --space-5: 32px;
   --space-6: 48px;
   --space-7: 72px;
-  --space-8: 104px;
+  --space-8: 112px;
 
-  --container-max: 1160px;
-  --gutter: 20px;
+  --container-max: 1200px;
+  --gutter: 16px;
 
-  --font-sans: 'Plus Jakarta Sans', system-ui, sans-serif;
-  --font-body: 'Inter', system-ui, sans-serif;
+  --font-sans: 'Atkinson Hyperlegible Next Variable', 'Atkinson Hyperlegible Next', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  --font-body: var(--font-sans);
 
-  --fs-h1: clamp(2rem, 1.3rem + 3vw, 3.4rem);
-  --fs-h2: clamp(1.5rem, 1.15rem + 1.6vw, 2.25rem);
-  --fs-h3: clamp(1.15rem, 1rem + 0.6vw, 1.4rem);
-  --fs-body: clamp(1rem, 0.95rem + 0.2vw, 1.0625rem);
-  --fs-small: 0.875rem;
+  --fs-display: clamp(2.35rem, 1.4rem + 4.2vw, 4.25rem);
+  --fs-h1: clamp(2.1rem, 1.4rem + 3vw, 3.4rem);
+  --fs-h2: clamp(1.75rem, 1.3rem + 2vw, 2.75rem);
+  --fs-h3: clamp(1.2rem, 1.08rem + 0.5vw, 1.45rem);
+  --fs-body: clamp(1.0625rem, 1rem + 0.25vw, 1.15rem);
+  --fs-lead: clamp(1.125rem, 1.03rem + 0.45vw, 1.3rem);
+  --fs-small: 0.95rem;
+
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
 }
 
-@media (max-width: 374px) {
+@media (min-width: 640px) {
   :root {
-    --gutter: 16px;
+    --gutter: 24px;
   }
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --bg: #10161a;
-    --surface: #161e22;
-    --surface-alt: #1c2529;
-    --border: #263037;
-    --text-primary: #eef1ee;
-    --text-secondary: #a9b3ab;
-    --text-hint: #6c766e;
-    --accent-primary: #2fa89b;
-    --accent-primary-dark: #4fc3b5;
-    --accent-secondary: #6ba9e8;
-    --accent-warm: #e39157;
-    --glucose-low-bg: #3a1f1f;
-    --glucose-in-range-bg: #1c3025;
-    --glucose-high-bg: #352611;
-    --shadow-soft: 0 2px 10px rgba(0, 0, 0, 0.3);
-    --shadow-card: 0 8px 24px rgba(0, 0, 0, 0.4);
+    color-scheme: dark;
+
+    --bg: #0d1220;
+    --bg-elevated: #111728;
+    --surface: #151b2b;
+    --surface-alt: #1c2436;
+    --border: #2a3348;
+    --border-strong: #3a4560;
+
+    --text-primary: #eef1f7;
+    --text-secondary: #b5bdcc;
+    --text-hint: #97a0b2;
+
+    --accent-primary: #2a6fca; /* texto branco 5:1 */
+    --accent-primary-dark: #1d5aa8;
+    --accent-secondary: #8fbaf3;
+    --accent-soft: #1a2c4d;
+    --accent-on-soft: #c6dbfa;
+
+    --cat-glucose: #ff8a8f;
+    --cat-glucose-soft: #3a1a22;
+    --cat-food: #4fd1a0;
+    --cat-food-soft: #11322a;
+    --cat-med: #b4a0ff;
+    --cat-med-soft: #2a2250;
+    --cat-pressure: #f08ae6;
+    --cat-pressure-soft: #3a1a3a;
+
+    --status-ok: #4fd1a0;
+    --status-high: #f2b35c;
+    --status-low: #ff8a8f;
+
+    --glucose-high: #f2b35c;
+    --glucose-high-bg: #33260f;
+
+    --shadow-soft: 0 1px 2px rgba(0, 0, 0, 0.4), 0 4px 14px rgba(0, 0, 0, 0.25);
+    --shadow-card: 0 2px 6px rgba(0, 0, 0, 0.35), 0 18px 40px -12px rgba(0, 0, 0, 0.5);
+    --shadow-phone: 0 30px 60px -20px rgba(0, 0, 0, 0.7), 0 12px 24px -12px rgba(0, 0, 0, 0.6);
+
+    --hero-glow-1: rgba(42, 111, 202, 0.35);
+    --hero-glow-2: rgba(124, 92, 255, 0.22);
+    --hero-glow-3: rgba(79, 209, 160, 0.12);
+    --phone-bezel: #05070d;
   }
 }

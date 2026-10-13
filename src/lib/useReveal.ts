@@ -1,36 +1,34 @@
-import { useEffect, useRef } from 'react';
+import { useEffect } from 'react';
 
 /**
- * Observa um elemento e adiciona a classe "revealed" quando ele entra na
- * viewport. O CSS base (global.css) mantém o conteúdo 100% visível sem JS;
- * a classe "reveal" só aplica opacidade/translateY dentro de
- * `@media (prefers-reduced-motion: no-preference)`, então mesmo sem este
- * hook (ou com JS desabilitado) o conteúdo aparece normalmente.
+ * Observa todos os elementos com a classe "reveal" e adiciona "revealed" quando
+ * entram na viewport. A classe "js-reveal" no <html> só é colocada aqui, então
+ * sem JS (ou sem IntersectionObserver) o conteúdo fica 100% visível. O CSS só
+ * anima dentro de `prefers-reduced-motion: no-preference`.
  */
-export function useReveal<T extends HTMLElement>() {
-  const ref = useRef<T | null>(null);
-
+export function useRevealAll(): void {
   useEffect(() => {
-    const el = ref.current;
-    if (!el) return;
-    if (typeof IntersectionObserver === 'undefined') {
-      el.classList.add('revealed');
-      return;
-    }
+    if (typeof IntersectionObserver === 'undefined') return;
+    const root = document.documentElement;
+    const els = Array.from(document.querySelectorAll<HTMLElement>('.reveal'));
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
-            el.classList.add('revealed');
-            observer.disconnect();
+            entry.target.classList.add('revealed');
+            observer.unobserve(entry.target);
           }
         });
       },
-      { threshold: 0.15 },
+      { threshold: 0.12, rootMargin: '0px 0px -40px 0px' },
     );
-    observer.observe(el);
+    // Elementos já na tela no carregamento aparecem sem esperar.
+    const vh = window.innerHeight;
+    els.forEach((el) => {
+      if (el.getBoundingClientRect().top < vh) el.classList.add('revealed');
+      else observer.observe(el);
+    });
+    root.classList.add('js-reveal');
     return () => observer.disconnect();
   }, []);
-
-  return ref;
 }

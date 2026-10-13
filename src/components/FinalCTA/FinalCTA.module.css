@@ -1,0 +1,118 @@
+.box {
+  position: relative;
+  overflow: hidden;
+  display: grid;
+  gap: var(--space-5);
+  padding: var(--space-5) var(--space-4);
+  border-radius: var(--radius-xl);
+  color: #fff;
+  background:
+    radial-gradient(60% 80% at 100% 0%, rgba(124, 92, 255, 0.55), transparent 60%),
+    radial-gradient(50% 70% at 0% 100%, rgba(0, 120, 79, 0.45), transparent 60%),
+    linear-gradient(135deg, #0f4f99, #0b3f80);
+  box-shadow: var(--shadow-card);
+}
+
+.box::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(rgba(255, 255, 255, 0.14) 1px, transparent 1px);
+  background-size: 20px 20px;
+  mask-image: linear-gradient(90deg, transparent, #000);
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000);
+  pointer-events: none;
+}
+
+.copy,
+.side {
+  position: relative;
+  z-index: 1;
+}
+
+.copy h2 {
+  color: #fff;
+}
+
+.copy p {
+  margin-top: var(--space-3);
+  font-size: var(--fs-lead);
+  color: #e3ecfb;
+  max-width: 560px;
+}
+
+.btn {
+  margin-top: var(--space-5);
+  background: #fff;
+  color: #0b3f80;
+}
+
+.btn:hover {
+  transform: translateY(-1px);
+  background: #eef4fd;
+}
+
+.btn:focus-visible {
+  outline-color: #fff;
+}
+
+.side {
+  padding: var(--space-4);
+  border-radius: var(--radius-lg);
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  backdrop-filter: blur(6px);
+}
+
+.sideTitle {
+  font-size: 1.1rem;
+  color: #fff;
+  margin-bottom: var(--space-3);
+}
+
+.list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.list li {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 4px var(--space-3);
+  padding: 10px 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.18);
+}
+
+.name {
+  font-weight: 700;
+}
+
+.status {
+  color: #d6e3f8;
+}
+
+.live {
+  color: #fff;
+  font-weight: 700;
+}
+
+.live span {
+  color: #7ff0c3;
+}
+
+@media (min-width: 640px) {
+  .box {
+    padding: var(--space-6);
+  }
+}
+
+@media (min-width: 1024px) {
+  .box {
+    grid-template-columns: 1.3fr 1fr;
+    align-items: center;
+    gap: var(--space-6);
+    padding: var(--space-7) var(--space-6);
+  }
+}

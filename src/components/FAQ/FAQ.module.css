@@ -1,19 +1,47 @@
-.section {
-  padding: var(--space-7) 0;
+.layout {
+  display: grid;
+  gap: var(--space-5);
 }
 
-.title {
-  text-align: center;
-  margin-bottom: var(--space-6);
+.sub {
+  margin-top: var(--space-3);
+  color: var(--text-secondary);
+  font-size: var(--fs-lead);
+}
+
+.disclaimer {
+  margin-top: var(--space-4);
+}
+
+.disclaimer svg {
+  width: 22px;
+  height: 22px;
+  flex: none;
+  color: var(--accent-secondary);
+  margin-top: 2px;
 }
 
 .list {
-  max-width: 720px;
-  margin: 0 auto;
+  display: grid;
+  gap: var(--space-2);
 }
 
 .item {
-  border-bottom: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  transition: border-color 180ms, box-shadow 180ms;
+}
+
+.open {
+  border-color: var(--border-strong);
+  box-shadow: var(--shadow-soft);
+}
+
+.q {
+  font-size: inherit;
+  font-weight: inherit;
+  letter-spacing: 0;
 }
 
 .question {
@@ -24,25 +52,52 @@
   gap: var(--space-3);
   background: none;
   border: none;
-  padding: var(--space-4) 0;
+  padding: var(--space-3) var(--space-4);
   text-align: left;
-  font-weight: 600;
-  font-size: var(--fs-body);
+  font-weight: 700;
+  font-size: 1.08rem;
+  line-height: 1.35;
   color: var(--text-primary);
-  min-height: 44px;
+  min-height: 60px;
+  border-radius: var(--radius-md);
 }
 
 .plus {
   flex-shrink: 0;
-  color: var(--accent-primary);
-  transition: transform 160ms ease-out;
+  width: 32px;
+  height: 32px;
+  padding: 6px;
+  border-radius: 50%;
+  background: var(--accent-soft);
+  color: var(--accent-on-soft);
+  transition: transform 200ms var(--ease-out);
 }
 
-.plusOpen {
+.open .plus {
   transform: rotate(45deg);
 }
 
 .answer {
-  padding-bottom: var(--space-4);
+  padding: 0 var(--space-4) var(--space-4);
   color: var(--text-secondary);
+}
+
+.link {
+  margin-top: var(--space-2);
+}
+
+.link a {
+  font-weight: 700;
+}
+
+@media (min-width: 1024px) {
+  .layout {
+    grid-template-columns: 0.8fr 1.2fr;
+    gap: var(--space-7);
+    align-items: start;
+  }
+  .head {
+    position: sticky;
+    top: 100px;
+  }
 }

@@ -1,0 +1,127 @@
+.layout {
+  display: grid;
+  gap: var(--space-6);
+  align-items: center;
+}
+
+.list {
+  display: grid;
+  gap: var(--space-4);
+  margin-top: var(--space-5);
+}
+
+.item {
+  display: grid;
+  grid-template-columns: 48px 1fr;
+  gap: var(--space-3);
+}
+
+.item h3 {
+  font-size: 1.2rem;
+  margin-bottom: 4px;
+}
+
+.item p {
+  color: var(--text-secondary);
+}
+
+.icon {
+  display: inline-grid;
+  place-items: center;
+  width: 48px;
+  height: 48px;
+  border-radius: 14px;
+  background: var(--accent-soft);
+  color: var(--accent-on-soft);
+}
+
+.icon svg {
+  width: 24px;
+  height: 24px;
+}
+
+.demo {
+  margin: 0;
+  padding: var(--space-5) var(--space-4);
+  border-radius: var(--radius-xl);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow-card);
+}
+
+.sample {
+  display: flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: var(--space-3) var(--space-4);
+  padding-bottom: var(--space-4);
+  margin-bottom: var(--space-4);
+  border-bottom: 1px solid var(--border);
+}
+
+.aa {
+  font-size: clamp(4rem, 3rem + 4vw, 6rem);
+  font-weight: 800;
+  line-height: 1;
+  letter-spacing: -0.04em;
+  color: var(--accent-secondary);
+}
+
+.glyphs {
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: var(--text-secondary);
+  letter-spacing: 0.04em;
+}
+
+.legend {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  gap: 10px;
+}
+
+.legend li {
+  display: grid;
+  grid-template-columns: 40px 1fr auto;
+  align-items: center;
+  gap: var(--space-3);
+  padding: 10px 14px;
+  border-radius: var(--radius-md);
+  border: 2px solid currentColor;
+  font-size: 1.05rem;
+}
+
+.legend li[data-s='vlow'],
+.legend li[data-s='low'] { color: var(--status-low); }
+.legend li[data-s='ok'] { color: var(--status-ok); }
+.legend li[data-s='high'] { color: var(--status-high); }
+
+.legend strong {
+  color: var(--text-primary);
+}
+
+.shape {
+  font-size: 1.05rem;
+  text-align: center;
+  letter-spacing: -0.1em;
+}
+
+.range {
+  color: var(--text-secondary);
+  font-size: 0.95rem;
+}
+
+.demo figcaption {
+  margin-top: var(--space-4);
+  font-size: var(--fs-small);
+  color: var(--text-hint);
+}
+
+@media (min-width: 1024px) {
+  .layout {
+    grid-template-columns: 1.1fr 1fr;
+    gap: var(--space-7);
+  }
+}

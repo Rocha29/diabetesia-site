@@ -9,9 +9,9 @@ const principles = [
 /** Founder story — intentionally does not identify the person it is about. */
 export function Story() {
   return (
-    <section id="historia" className={styles.section} aria-labelledby="story-title">
-      <div className="container">
-        <p className={styles.eyebrow}>Por que o DiabetesIA existe</p>
+    <section id="historia" className={`section ${styles.section}`} aria-labelledby="story-title">
+      <div className={`container reveal ${styles.wrap}`}>
+        <p className={`eyebrow ${styles.eyebrow}`}>Por que o DiabetesIA existe</p>
         <h2 id="story-title" className={styles.title}>
           Nasceu de uma história real.
         </h2>

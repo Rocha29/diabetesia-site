@@ -1,0 +1,11 @@
+.section {
+  background:
+    radial-gradient(60% 50% at 20% 50%, color-mix(in srgb, var(--cat-food) 7%, transparent), transparent 70%),
+    var(--bg-elevated);
+  border-block: 1px solid var(--border);
+}
+
+.also {
+  margin-top: var(--space-4);
+  color: var(--text-secondary);
+}

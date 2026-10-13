@@ -1,47 +1,41 @@
 import { Header } from './components/Header/Header';
 import { Hero } from './components/Hero/Hero';
-import { Problem } from './components/Problem/Problem';
-import { Story } from './components/Story/Story';
-import { Solution } from './components/Solution/Solution';
+import { Highlights } from './components/Highlights/Highlights';
 import { HowItWorks } from './components/HowItWorks/HowItWorks';
-import { AISection } from './components/AISection/AISection';
-import { Features } from './components/Features/Features';
-import { Tracking } from './components/Tracking/Tracking';
-import { Roadmap } from './components/Roadmap/Roadmap';
-import { Screenshots } from './components/Screenshots/Screenshots';
-import { Versions } from './components/Versions/Versions';
+import { Assistant } from './components/Assistant/Assistant';
+import { Family } from './components/Family/Family';
+import { Accessibility } from './components/Accessibility/Accessibility';
+import { Gallery } from './components/Gallery/Gallery';
+import { Story } from './components/Story/Story';
 import { Security } from './components/Security/Security';
-import { Audience } from './components/Audience/Audience';
 import { FAQ } from './components/FAQ/FAQ';
-import { CTA } from './components/CTA/CTA';
+import { FinalCTA } from './components/FinalCTA/FinalCTA';
 import { Footer } from './components/Footer/Footer';
 import { useScrollDepth } from './lib/useScrollDepth';
+import { useRevealAll } from './lib/useReveal';
 
 export default function App() {
   useScrollDepth();
+  useRevealAll();
 
   return (
     <>
-      <a href="#main-content" className="skip-link">
+      <a href="#conteudo" className="skip-link">
         Pular para o conteúdo
       </a>
       <Header />
-      <main id="main-content">
+      <main id="conteudo">
         <Hero />
-        <Story />
-        <Problem />
-        <Solution />
+        <Highlights />
         <HowItWorks />
-        <AISection />
-        <Features />
-        <Tracking />
-        <Roadmap />
-        <Screenshots />
-        <Versions />
+        <Assistant />
+        <Family />
+        <Accessibility />
+        <Gallery />
+        <Story />
         <Security />
-        <Audience />
         <FAQ />
-        <CTA />
+        <FinalCTA />
       </main>
       <Footer />
     </>
