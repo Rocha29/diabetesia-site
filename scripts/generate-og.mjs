@@ -9,8 +9,8 @@ const outPath = path.resolve(__dirname, '..', 'public', 'og.png');
 
 const W = 1200;
 const H = 630;
-const bg = [15, 110, 102]; // --accent-primary
-const band = [217, 122, 63]; // --accent-warm, faixa inferior representando o CTA
+const bg = [21, 101, 192]; // --accent-primary (#1565c0)
+const band = [15, 79, 153]; // --accent-primary-dark (#0f4f99), faixa inferior
 
 function crc32(buf) {
   let c, crc = 0xffffffff;

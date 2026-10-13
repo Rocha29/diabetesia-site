@@ -1,36 +1,27 @@
 # DiabetesIA — site institucional
 
-O site oficial do DiabetesIA apresenta três grupos de recursos:
+O site oficial do DiabetesIA apresenta a nova versão do app (V2), hoje **em teste fechado no Android, por convite**:
+nova tela inicial com carrossel e Registro rápido, barra com 4 abas, assistente com ações na hora,
+"Quem me acompanha" (família só leitura), carboidratos e calorias pela tabela TACO/IBGE, pressão arterial,
+Minha jornada, relatório em PDF, leitura por foto com conferência e acessibilidade.
 
-- **O que o app faz hoje:** glicemia, refeições, medicamentos, receitas, chat de IA, histórico e relatórios.
-- **O que está em desenvolvimento na versão web V2:**
-  - pressão arterial;
-  - carboidratos e calorias estimados por tabela, com metas;
-  - novo visual mais fácil de ler;
-  - acompanhamento por dia, semana, mês e ano;
-  - "Minha jornada", lembretes, consultas e insights;
-  - relatório com PDF, CSV e JSON;
-  - controles de privacidade e perfil.
-- **O que é planejado:** dispositivos como Garmin e Health Connect.
+O site não faz alegações médicas nem inventa números, depoimentos, preços ou lojas. O assistente
+**não vê os registros** do usuário — não escrever o contrário. Nada de detalhes de infraestrutura no site.
 
-O site não faz alegações médicas nem inventa números, depoimentos ou lojas.
-
-Stack: React 18 + TypeScript + Vite 5, CSS Modules, fontes via `@fontsource`. Sem framework de UI
-e sem biblioteca de animação.
+Stack: React 18 + TypeScript + Vite 5, CSS Modules, fonte Atkinson Hyperlegible Next (a mesma do app)
+auto-hospedada via `@fontsource-variable`. Sem framework de UI e sem biblioteca de animação.
+Tema claro e escuro por `prefers-color-scheme` (tokens em `src/styles/tokens.css`, alinhados ao design system do app).
 
 ## Onde editar o conteúdo
 
 | O que | Arquivo |
 |---|---|
-| Recursos disponíveis hoje | `src/data/features.ts` |
-| Recursos de IA | `src/data/features.ts` (`aiItems`) |
-| Acompanhamento (Hoje, Semana, Mês, Ano) | `src/components/Tracking/Tracking.tsx` |
-| Novidades da V2 ("Em desenvolvimento" e "Planejado"), incluindo pressão, carboidratos e calorias, metas e o novo visual | `src/data/roadmap.ts` |
+| Cartões de novidades (bento) | `src/data/highlights.ts` |
+| Telas, legendas, textos alternativos e abas da galeria | `src/data/screens.ts` |
 | Perguntas frequentes | `src/data/faq.ts` |
-| Versões V1 e V2 | `src/components/Versions/Versions.tsx` |
-
-Regra: a V2 web **ainda não está publicada**. Um recurso só sai de `roadmap.ts` para `features.ts`
-depois de estar disponível para o público.
+| Menu, link do guia do testador e aviso médico | `src/data/nav.ts` |
+| Assistente / Quem me acompanha / Acessibilidade / Privacidade | `src/components/<Seção>/` |
+| Disponibilidade (Android, iPhone, Web, Premium…) | `src/components/FinalCTA/FinalCTA.tsx` |
 
 ## Como rodar
 
@@ -48,7 +39,7 @@ npm run build
 ```
 
 Roda `tsc --noEmit` e depois `vite build`. Gera multi-página: `index.html`,
-`privacidade/index.html` e `termos/index.html` dentro de `dist/`.
+`privacidade/index.html`, `termos/index.html` e `testador/index.html` dentro de `dist/`.
 
 ## Deploy (GitHub Pages)
 
