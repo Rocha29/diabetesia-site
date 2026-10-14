@@ -20,7 +20,7 @@ export const highlights: Highlight[] = [
   {
     id: 'home',
     title: 'Nova tela inicial',
-    text: 'O que importa agora aparece num carrossel — última glicemia, alimentação do dia e dicas — e o Registro rápido abre glicose, refeição, remédio ou pressão com um toque.',
+    text: 'O que importa agora aparece num carrossel: última glicemia, alimentação do dia e dicas. O Registro rápido abre glicose, refeição, remédio ou pressão com um toque.',
     bullets: ['Barra inferior com 4 abas com nome: Início, Histórico, Assistente e Mais'],
     tone: 'brand',
     screen: 'home',

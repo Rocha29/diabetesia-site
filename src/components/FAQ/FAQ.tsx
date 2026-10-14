@@ -20,7 +20,7 @@ export function FAQ() {
         <div className={styles.head}>
           <p className="eyebrow">Dúvidas</p>
           <h2 id="faq-title">Perguntas frequentes</h2>
-          <p className={styles.sub}>Respostas diretas sobre o que o app faz — e o que ele não faz.</p>
+          <p className={styles.sub}>Respostas diretas sobre o que o app faz e o que ele não faz.</p>
           <p className={`disclaimer ${styles.disclaimer}`}>
             <IconInfo />
             <span>{DISCLAIMER}</span>

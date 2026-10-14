@@ -24,12 +24,12 @@ export function Story() {
           </p>
           <p>
             Foi aí que entendi que o desafio não era só tecnológico. Para muita gente, aceitar o
-            diabetes já é difícil — e a ferramenta precisa ser <strong>discreta, simples e
+            diabetes já é difícil, e a ferramenta precisa ser <strong>discreta, simples e
             acolhedora</strong>, sem julgamento.
           </p>
           <p>
             O DiabetesIA quer ajudar quem vive essa situação a dar os primeiros passos para um
-            controle básico e permitir que a família apoie de perto — sempre com o consentimento
+            controle básico e permitir que a família apoie de perto, sempre com o consentimento
             de quem está sendo cuidado.
           </p>
         </div>

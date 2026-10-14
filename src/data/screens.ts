@@ -181,7 +181,7 @@ export const screens: Screen[] = [
     id: 'sharing',
     label: 'Quem me acompanha',
     caption: 'Convide por código, veja quem acompanha e remova quando quiser.',
-    alt: 'Tela Quem me acompanha: aviso "Só quem você convidar — essas pessoas veem seus registros, mas não conseguem mudar nada", a Mãe e uma médica com o botão Remover, um convite enviado ao irmão que expira em 31 horas com código ainda não usado, e o botão Convidar alguém, 3 de 5 pessoas.',
+    alt: 'Tela Quem me acompanha: aviso "Só quem você convidar: essas pessoas veem seus registros, mas não conseguem mudar nada", a Mãe e uma médica com o botão Remover, um convite enviado ao irmão que expira em 31 horas com código ainda não usado, e o botão Convidar alguém, 3 de 5 pessoas.',
     webp: sharingWebp,
     png: sharingPng,
   },

@@ -45,7 +45,7 @@ export function Gallery() {
         <div className="section-head center reveal">
           <p className="eyebrow">Telas do app</p>
           <h2 id="telas-title">Veja o app por dentro.</h2>
-          <p>Capturas reais da nova versão, preenchidas com dados de demonstração — nenhum dado de pessoa real.</p>
+          <p>Capturas reais da nova versão, preenchidas com dados de demonstração. Nenhum dado é de pessoa real.</p>
         </div>
 
         <div className={styles.tabsWrap}>
