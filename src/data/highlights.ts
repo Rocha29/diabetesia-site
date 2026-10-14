@@ -30,7 +30,7 @@ export const highlights: Highlight[] = [
   {
     id: 'assistant',
     title: 'Assistente com ações na hora',
-    text: 'Crie um lembrete de remédio, cadastre uma consulta ou tire dúvidas do app num passo a passo, sem depender de IA. Nada é salvo antes de você confirmar.',
+    text: 'Crie um lembrete de remédio, cadastre uma consulta ou tire dúvidas sobre o app num passo a passo, sem depender de IA. Nada é salvo antes de você confirmar.',
     tone: 'med',
     screen: 'assistant',
     crop: 70,

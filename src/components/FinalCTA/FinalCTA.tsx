@@ -20,7 +20,7 @@ export function FinalCTA() {
             <h2 id="cta-title">Recebeu um convite para testar?</h2>
             <p>
               O beta do DiabetesIA é fechado e por convite. O guia do testador mostra, passo a passo,
-              como instalar o app no Android e dar os primeiros registros.
+              como instalar o app no Android e fazer os primeiros registros.
             </p>
             <a
               href={TESTER_GUIDE_HREF}
