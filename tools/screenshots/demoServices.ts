@@ -773,7 +773,9 @@ const sharedSummary = (): SharedAccessSummary => ({
     { id: 'sa_00000000000000a3', label: 'Pedro (irmão)', status: 'pending', createdAt: isoAgo(60 * 17), expiresAt: new Date(Date.now() + 31 * 3_600_000).toISOString(), acceptedAt: null, lastViewedAt: null },
   ],
   following: [
-    { id: 'sa_00000000000000b1', label: 'Pai', since: isoAgo(60 * 24 * 30), lastGlucose: { value: 142, unit: 'mg/dL', context: 'postMeal', at: isoAgo(40) } },
+    { id: 'sa_00000000000000b1', label: 'Pai', since: isoAgo(60 * 24 * 30), alertsEnabled: true, lastGlucose: { value: 142, unit: 'mg/dL', context: 'postMeal', at: isoAgo(40) } },
+    { id: 'sa_00000000000000b2', label: 'Vó Lúcia', since: isoAgo(60 * 24 * 12), lastGlucose: { value: 64, unit: 'mg/dL', context: 'random', at: isoAgo(120) } },
+    { id: 'sa_00000000000000b3', label: 'Tio Carlos', since: isoAgo(60 * 24 * 5), lastGlucose: { value: 131, unit: 'mg/dL', context: 'random', at: isoAgo(60 * 30) } },
   ],
   limit: 5,
   consentVersion: '2026-10-12',
@@ -798,8 +800,17 @@ export const sharedAccessRepository: SharedAccessRepository = {
       { id: 'g1', kind: 'glucose', at: todayAt(7, 10), value: 98, unit: 'mg/dL', context: 'fasting' },
     ],
   }),
+  setAlerts: async () => {},
+  glucoseEvent: async () => {},
   removeAll: async () => {},
   clearCache: () => {},
+};
+
+// ─── Push (demo: nada é enviado) ──────────────────────────────────────────────
+
+export const pushTokens = {
+  register: async () => {},
+  unregister: async () => {},
 };
 
 // ─── Relato de bug (demo: nunca cria issue) ───────────────────────────────────

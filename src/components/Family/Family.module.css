@@ -9,3 +9,58 @@
   margin-top: var(--space-4);
   color: var(--text-secondary);
 }
+
+/* Example of the phone alert (illustration, same look as the app's reminder notifications). */
+.notice {
+  position: absolute;
+  z-index: 3;
+  top: 6%;
+  left: 50%;
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  width: min(320px, 92%);
+  padding: 12px 14px;
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  background: color-mix(in srgb, var(--bg-elevated) 92%, transparent);
+  box-shadow: 0 12px 32px rgba(10, 20, 40, 0.18);
+  backdrop-filter: blur(10px);
+  transform: translateX(-50%);
+  font-size: 14px;
+  line-height: 1.35;
+}
+
+.noticeIcon {
+  display: grid;
+  place-items: center;
+  flex: none;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: #1565c0;
+  color: #fff;
+}
+
+.noticeIcon svg {
+  width: 18px;
+  height: 18px;
+}
+
+.noticeText {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+  color: var(--text-secondary);
+}
+
+.noticeText strong {
+  color: var(--text-primary);
+  font-size: 15px;
+}
+
+.noticeApp {
+  font-size: 12px;
+  font-weight: 700;
+}
