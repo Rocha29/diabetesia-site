@@ -42,7 +42,7 @@ export const faqItems: FaqItem[] = [
     id: 'sharing',
     question: 'Como funciona o "Quem me acompanha"?',
     answer:
-      'Você cria um convite com um código de uso único e envia para quem quiser — até 5 pessoas, contando os convites pendentes. Quem aceita vê seus registros em modo somente leitura e não consegue mudar nada. O convite expira se não for usado, e você remove qualquer pessoa quando quiser.',
+      'Você cria um convite com um código de uso único e envia para quem quiser — até 5 pessoas, contando os convites pendentes. Quem aceita vê seus registros em modo somente leitura e não consegue mudar nada. O convite expira se não for usado, e você remove qualquer pessoa quando quiser. Se você registrar uma glicemia baixa, quem te acompanha recebe um aviso no celular (no app Android), sem o valor no texto, e pode desligar esse aviso.',
   },
   {
     id: 'nutrition',

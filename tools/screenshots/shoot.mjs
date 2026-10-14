@@ -117,6 +117,20 @@ async function scrollToHeading(page, pattern, offset = 70) {
   await page.close();
 }
 
+// ---- Início: cartão Acompanhamento (contadores + linha de atenção) ----
+{
+  const page = await newPage();
+  await goto(page, '/home');
+  await new Promise((r) => setTimeout(r, 1200));
+  await page.evaluate(() => {
+    const h = document.getElementById('home-following');
+    if (h) window.scrollTo(0, h.getBoundingClientRect().top + window.scrollY - 160);
+  });
+  await new Promise((r) => setTimeout(r, 400));
+  await shoot(page, 'acompanhamento');
+  await page.close();
+}
+
 // ---- Mais (bottom bar tab) ----
 {
   const page = await newPage();

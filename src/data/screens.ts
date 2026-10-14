@@ -14,6 +14,7 @@ export type ScreenId =
   | 'assistant'
   | 'sharing'
   | 'following'
+  | 'acompanhamento'
   | 'profile'
   | 'checkin'
   | 'login';
@@ -56,6 +57,8 @@ import assistantWebp from '../assets/screens/assistant.webp';
 import assistantPng from '../assets/screens/assistant.png';
 import sharingWebp from '../assets/screens/sharing.webp';
 import sharingPng from '../assets/screens/sharing.png';
+import acompanhamentoWebp from '../assets/screens/acompanhamento.webp';
+import acompanhamentoPng from '../assets/screens/acompanhamento.png';
 import followingWebp from '../assets/screens/following.webp';
 import followingPng from '../assets/screens/following.png';
 import reportWebp from '../assets/screens/report.webp';
@@ -183,6 +186,14 @@ export const screens: Screen[] = [
     png: sharingPng,
   },
   {
+    id: 'acompanhamento',
+    label: 'Acompanhamento na Início',
+    caption: 'Na Início, os números de quem você acompanha e de quem te acompanha. Só aparece um nome quando alguém precisa de atenção.',
+    alt: 'Cartão Acompanhamento na tela Início: ilustração de uma pessoa segurando um coração, os contadores "3 Eu acompanho" e "2 Me acompanham", uma linha destacada em vermelho com a Vó Lúcia, 64, glicemia baixa há 2 horas, e o botão Ver quem eu acompanho.',
+    webp: acompanhamentoWebp,
+    png: acompanhamentoPng,
+  },
+  {
     id: 'following',
     label: 'Acompanhando o Pai',
     caption: 'Quem acompanha vê os registros em modo somente leitura.',
@@ -229,6 +240,6 @@ export const screenGroups: ScreenGroup[] = [
   { id: 'registrar', label: 'Registrar', screens: ['glucose', 'food', 'medication', 'pressure', 'prescription'] },
   { id: 'acompanhar', label: 'Acompanhar', screens: ['report', 'tracking', 'journey'] },
   { id: 'assistente', label: 'Assistente', screens: ['chat', 'assistant'] },
-  { id: 'familia', label: 'Família', screens: ['sharing', 'following'] },
+  { id: 'familia', label: 'Família', screens: ['acompanhamento', 'sharing', 'following'] },
   { id: 'perfil', label: 'Perfil', screens: ['profile', 'checkin', 'login'] },
 ];

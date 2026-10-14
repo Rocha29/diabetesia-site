@@ -3,7 +3,7 @@ import styles from '../Split/Split.module.css';
 import own from './Family.module.css';
 import { PhoneFrame } from '../PhoneFrame/PhoneFrame';
 import { screenById } from '../../data/screens';
-import { IconKey, IconEye, IconUserX } from '../Icons';
+import { IconKey, IconEye, IconUserX, IconBell } from '../Icons';
 
 const steps = [
   {
@@ -15,6 +15,11 @@ const steps = [
     icon: IconEye,
     title: 'Acompanham só para leitura',
     text: 'Quem aceita vê seus registros, mas não consegue mudar nada. Você vê quando cada pessoa olhou seus dados.',
+  },
+  {
+    icon: IconBell,
+    title: 'Aviso no celular quando precisa',
+    text: 'Se você registrar uma glicemia baixa, quem te acompanha recebe um aviso no celular, igual aos lembretes do app. O aviso não mostra o valor, e cada pessoa pode desligá-lo.',
   },
   {
     icon: IconUserX,
@@ -53,14 +58,25 @@ export function Family() {
             ))}
           </ol>
           <p className={own.also}>
-            Também dá para acompanhar alguém: a aba <strong>Quem eu acompanho</strong> mostra os dados de
-            quem convidou você, em modo somente leitura.
+            Também dá para acompanhar alguém. Na Início, o cartão <strong>Acompanhamento</strong> mostra
+            quantas pessoas você acompanha e destaca só quem precisa de atenção; tocar abre os registros,
+            em modo somente leitura.
           </p>
         </div>
 
         <div className={`${styles.phones} reveal`}>
           <div className={styles.phoneA}>
-            <PhoneFrame screen={screenById.sharing} width={260} />
+            <PhoneFrame screen={screenById.acompanhamento} width={260} />
+          </div>
+          <div className={own.notice} role="img" aria-label="Exemplo de aviso no celular: Vó Lúcia registrou uma glicemia baixa agora. Toque para ver os registros.">
+            <span className={own.noticeIcon} aria-hidden="true">
+              <IconBell />
+            </span>
+            <span className={own.noticeText}>
+              <span className={own.noticeApp}>DiabetesIA · agora</span>
+              <strong>Vó Lúcia</strong>
+              <span>Registrou uma glicemia baixa agora. Toque para ver os registros.</span>
+            </span>
           </div>
           <div className={styles.phoneB}>
             <PhoneFrame screen={screenById.following} width={260} />
