@@ -16,7 +16,7 @@ const steps = [
   {
     icon: IconChart,
     title: 'Acompanhe',
-    text: 'Histórico por tipo, resumo do dia, da semana, do mês e do ano, e a sua Minha jornada.',
+    text: 'Histórico por tipo, resumo do dia, da semana, do mês e do ano, e a Minha jornada.',
   },
   {
     icon: IconDocument,

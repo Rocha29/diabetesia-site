@@ -187,8 +187,8 @@ export const screens: Screen[] = [
   },
   {
     id: 'acompanhamento',
-    label: 'Acompanhamento na Início',
-    caption: 'Na Início, os números de quem você acompanha e de quem te acompanha. Só aparece um nome quando alguém precisa de atenção.',
+    label: 'Acompanhamento na tela Início',
+    caption: 'Na tela Início, os números de quem você acompanha e de quem acompanha você. Só aparece um nome quando alguém precisa de atenção.',
     alt: 'Cartão Acompanhamento na tela Início: ilustração de uma pessoa segurando um coração, os contadores "3 Eu acompanho" e "2 Me acompanham", uma linha destacada em vermelho com a Vó Lúcia, 64, glicemia baixa há 2 horas, e o botão Ver quem eu acompanho.',
     webp: acompanhamentoWebp,
     png: acompanhamentoPng,

@@ -19,7 +19,7 @@ const steps = [
   {
     icon: IconBell,
     title: 'Aviso no celular quando precisa',
-    text: 'Se você registrar uma glicemia baixa, quem te acompanha recebe um aviso no celular, igual aos lembretes do app. O aviso não mostra o valor, e cada pessoa pode desligá-lo.',
+    text: 'Se você registrar uma glicemia baixa, quem acompanha você recebe um aviso no celular, com a mesma aparência dos lembretes do app. O aviso não mostra o valor, e cada pessoa pode desligá-lo.',
   },
   {
     icon: IconUserX,
@@ -58,7 +58,7 @@ export function Family() {
             ))}
           </ol>
           <p className={own.also}>
-            Também dá para acompanhar alguém. Na Início, o cartão <strong>Acompanhamento</strong> mostra
+            Também dá para acompanhar alguém. Na tela Início, o cartão <strong>Acompanhamento</strong> mostra
             quantas pessoas você acompanha e destaca só quem precisa de atenção; tocar abre os registros,
             em modo somente leitura.
           </p>

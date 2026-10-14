@@ -29,7 +29,7 @@ export function Story() {
           </p>
           <p>
             O DiabetesIA quer ajudar quem vive essa situação a dar os primeiros passos para um
-            controle básico, e permitir que a família apoie de perto — sempre com o consentimento
+            controle básico e permitir que a família apoie de perto — sempre com o consentimento
             de quem está sendo cuidado.
           </p>
         </div>
