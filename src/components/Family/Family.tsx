@@ -19,7 +19,7 @@ const steps = [
   {
     icon: IconBell,
     title: 'Aviso no celular quando precisa',
-    text: 'Se você registrar uma glicemia baixa, quem acompanha você recebe um aviso no celular, com a mesma aparência dos lembretes do app. O aviso não mostra o valor, e cada pessoa pode desligá-lo.',
+    text: 'Se você registrar glicemia ou pressão baixa ou alta, quem acompanha você pode receber um aviso no celular, com a mesma aparência dos lembretes do app. O aviso não mostra o valor. Cada pessoa escolhe quais avisos quer, e você escolhe quais libera.',
   },
   {
     icon: IconUserX,
@@ -42,7 +42,7 @@ export function Family() {
           <h2 id="familia-title">Cuidado em família, com o seu consentimento.</h2>
           <p className={styles.lead}>
             Mãe, filho, cuidador ou médico: quem você convidar acompanha seus registros de onde
-            estiver — e você continua no controle.
+            estiver, e você continua no controle.
           </p>
           <ol className={styles.steps}>
             {steps.map(({ icon: Icon, title, text }) => (

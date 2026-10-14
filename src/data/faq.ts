@@ -24,13 +24,13 @@ export const faqItems: FaqItem[] = [
     id: 'assistant',
     question: 'O assistente vê os meus registros?',
     answer:
-      'Não. Hoje o assistente não tem acesso aos seus registros. Ele resolve na hora ações do app — criar lembrete de remédio, cadastrar consulta, registrar glicemia, refeição ou remédio e tirar dúvidas sobre o app — e responde perguntas gerais sobre diabetes com IA, o que pode levar um pouco mais de tempo. Ele não dá diagnóstico nem indica dose.',
+      'Não. Hoje o assistente não tem acesso aos seus registros. Ele resolve na hora ações do app, como criar lembrete de remédio, cadastrar consulta, registrar glicemia, refeição ou remédio e tirar dúvidas sobre o app. Também responde perguntas gerais sobre diabetes com IA, o que pode levar um pouco mais de tempo. Ele não dá diagnóstico nem indica dose.',
   },
   {
     id: 'ai',
     question: 'Como a inteligência artificial é usada?',
     answer:
-      'A IA ajuda a ler fotos — do glicosímetro, da embalagem do remédio, da receita e da refeição — e a responder perguntas abertas no assistente. Você sempre confere o que foi lido antes de salvar. A IA não calcula carboidratos nem calorias: esses números vêm da tabela de alimentos.',
+      'A IA ajuda a ler fotos do glicosímetro, da embalagem do remédio, da receita e da refeição, e a responder perguntas abertas no assistente. Você sempre confere o que foi lido antes de salvar. A IA não calcula carboidratos nem calorias: esses números vêm da tabela de alimentos.',
   },
   {
     id: 'limit',
@@ -42,7 +42,7 @@ export const faqItems: FaqItem[] = [
     id: 'sharing',
     question: 'Como funciona o "Quem me acompanha"?',
     answer:
-      'Você cria um convite com um código de uso único e envia para quem quiser — até 5 pessoas, contando os convites pendentes. Quem aceita vê seus registros em modo somente leitura e não consegue mudar nada. O convite expira se não for usado, e você remove qualquer pessoa quando quiser. Se você registrar uma glicemia baixa, quem acompanha você recebe um aviso no celular (no app Android), sem o valor no texto, e pode desligar esse aviso.',
+      'Você cria um convite com um código de uso único e envia para quem quiser: até 5 pessoas, contando os convites pendentes. Quem aceita vê seus registros em modo somente leitura e não consegue mudar nada. O convite expira se não for usado, e você remove qualquer pessoa quando quiser. Quem acompanha você pode receber um aviso no celular (no app Android) quando você registrar glicemia ou pressão baixa ou alta. Essa pessoa escolhe quais avisos quer, você escolhe quais libera, e o valor nunca aparece no texto do aviso.',
   },
   {
     id: 'nutrition',
@@ -84,7 +84,7 @@ export const faqItems: FaqItem[] = [
     id: 'safety',
     question: 'Quem pode ver os meus dados?',
     answer:
-      'Seus registros ficam numa área ligada à sua conta, acessível só por você — e, se você quiser, pelas pessoas que convidar, apenas para leitura. Na leitura por foto, a IA recebe a imagem ou o texto da análise, sem o seu nome nem o seu e-mail. Os detalhes estão na Política de Privacidade.',
+      'Seus registros ficam numa área ligada à sua conta, acessível só por você e, se você quiser, pelas pessoas que convidar, apenas para leitura. Na leitura por foto, a IA recebe a imagem ou o texto da análise, sem o seu nome nem o seu e-mail. Os detalhes estão na Política de Privacidade.',
     link: { href: 'privacidade/', label: 'Ler a Política de Privacidade' },
   },
   {

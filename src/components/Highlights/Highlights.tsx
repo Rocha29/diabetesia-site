@@ -87,8 +87,8 @@ export function Highlights() {
           <p className="eyebrow">Novidades da nova versão</p>
           <h2 id="novidades-title">Tudo mais perto, mais claro e mais rápido.</h2>
           <p>
-            A nova versão do DiabetesIA foi redesenhada do zero para ser fácil de ler e rápida de usar
-            — e já está em teste no Android.
+            A nova versão do DiabetesIA foi redesenhada do zero para ser fácil de ler e rápida de usar.
+            Ela já está em teste no Android.
           </p>
         </div>
         <div className={styles.grid}>

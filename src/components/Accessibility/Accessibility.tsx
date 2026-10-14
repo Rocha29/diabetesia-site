@@ -15,7 +15,7 @@ const items = [
   {
     icon: IconCheck,
     title: 'Nunca só pela cor',
-    text: 'A situação da glicemia aparece sempre com forma, palavra e cor — legível também para quem tem daltonismo.',
+    text: 'A situação da glicemia aparece sempre com forma, palavra e cor, e fica legível também para quem tem daltonismo.',
   },
 ];
 
