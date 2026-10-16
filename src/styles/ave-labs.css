@@ -1,0 +1,470 @@
+/*
+ * Página institucional da AVE Labs (ave-labs/index.html).
+ * Reaproveita os tokens do site (espaçamento, raio, fonte, superfícies) e define
+ * as cores da marca AVE Labs: azul-escuro e azul da logo, branco e neutros.
+ * A logo tem fundo branco: nos dois temas ela fica sobre um cartão branco, sem filtro.
+ */
+@import './tokens.css';
+
+:root {
+  --ave-ink: #0e1f45; /* azul-escuro de "AVE" */
+  --ave-blue: #1e56b4; /* azul de "Labs"; texto branco 6,6:1 */
+  --ave-blue-hover: #17469a;
+  --ave-link: #1e56b4;
+  --ave-heading: var(--ave-ink);
+  --ave-soft: #e3ecfa;
+  --ave-line: #c9d8f2;
+  --logo-surface: #ffffff;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --ave-blue: #2a64c4; /* texto branco 5,6:1 */
+    --ave-blue-hover: #3572d4;
+    --ave-link: #9cc0f5;
+    --ave-heading: #eef1f7;
+    --ave-soft: #17284a;
+    --ave-line: #2c4675;
+  }
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    transition-duration: 0.01ms !important;
+  }
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text-primary);
+  font-family: var(--font-body);
+  font-size: var(--fs-body);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: clip;
+}
+
+h1,
+h2,
+h3 {
+  font-family: var(--font-sans);
+  color: var(--ave-heading);
+  line-height: 1.15;
+  letter-spacing: -0.015em;
+  margin: 0;
+  text-wrap: balance;
+}
+
+h1 {
+  font-size: var(--fs-h1);
+  font-weight: 800;
+}
+
+h2 {
+  font-size: var(--fs-h2);
+  font-weight: 800;
+}
+
+h3 {
+  font-size: var(--fs-h3);
+  font-weight: 700;
+}
+
+p {
+  margin: 0;
+  color: var(--text-secondary);
+  text-wrap: pretty;
+}
+
+a {
+  color: var(--ave-link);
+  text-underline-offset: 0.18em;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+figure {
+  margin: 0;
+}
+
+:focus-visible {
+  outline: 3px solid var(--ave-link);
+  outline-offset: 3px;
+  border-radius: 6px;
+}
+
+.skip-link {
+  position: absolute;
+  left: -9999px;
+  top: 0;
+  z-index: 10;
+  background: var(--ave-blue);
+  color: #ffffff;
+  padding: var(--space-2) var(--space-3);
+  border-radius: var(--radius-sm);
+  font-weight: 700;
+}
+
+.skip-link:focus {
+  left: var(--space-3);
+  top: var(--space-3);
+}
+
+.wrap {
+  width: 100%;
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: 0 var(--gutter);
+}
+
+/* Seções só de texto: alinhadas à mesma grade, com linha de leitura curta. */
+.narrow > * {
+  max-width: 760px;
+}
+
+/* ---------- Barra superior ---------- */
+
+.topbar {
+  border-bottom: 1px solid var(--border);
+  background: var(--surface);
+}
+
+.topbar-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-3);
+  min-height: 60px;
+}
+
+.wordmark {
+  font-weight: 800;
+  font-size: 1.15rem;
+  letter-spacing: -0.01em;
+  color: var(--ave-heading);
+  text-decoration: none;
+  padding: var(--space-2) 0;
+}
+
+.wordmark span {
+  color: var(--ave-link);
+  font-weight: 700;
+}
+
+.topbar-link {
+  font-weight: 600;
+  font-size: var(--fs-small);
+  padding: var(--space-2) 0;
+}
+
+/* ---------- Botões ---------- */
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+  margin-top: var(--space-5);
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 48px;
+  padding: 12px 22px;
+  border-radius: var(--radius-pill);
+  font-weight: 700;
+  font-size: 1rem;
+  text-decoration: none;
+  border: 2px solid transparent;
+  transition: background-color 0.15s ease, border-color 0.15s ease;
+}
+
+.btn-primary {
+  background: var(--ave-blue);
+  color: #ffffff;
+}
+
+.btn-primary:hover {
+  background: var(--ave-blue-hover);
+}
+
+.btn-ghost {
+  border-color: var(--ave-line);
+  color: var(--ave-link);
+  background: transparent;
+}
+
+.btn-ghost:hover {
+  border-color: var(--ave-link);
+}
+
+/* ---------- Cartão da logo (sempre claro) ---------- */
+
+.logo-card {
+  background: var(--logo-surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: var(--shadow-soft);
+}
+
+.logo-card img {
+  width: 100%;
+}
+
+/* ---------- Hero ---------- */
+
+.hero {
+  padding: var(--space-6) 0 var(--space-7);
+}
+
+.hero-grid {
+  display: grid;
+  gap: var(--space-5);
+  align-items: center;
+}
+
+.hero-logo {
+  width: 100%;
+  max-width: 560px;
+}
+
+.eyebrow {
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ave-link);
+  margin-bottom: var(--space-3);
+}
+
+.lead {
+  margin-top: var(--space-4);
+  font-size: var(--fs-lead);
+  max-width: 36em;
+}
+
+@media (min-width: 900px) {
+  .hero {
+    padding: var(--space-7) 0 var(--space-8);
+  }
+
+  .hero-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-6);
+  }
+
+  .hero-logo {
+    order: 2;
+    max-width: none;
+  }
+}
+
+/* ---------- Seções ---------- */
+
+.section {
+  padding: var(--space-7) 0;
+}
+
+.section-alt {
+  background: var(--surface);
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+}
+
+.section-head {
+  max-width: 760px;
+  margin-bottom: var(--space-5);
+}
+
+.section h2 + p,
+.section h2 + p + p,
+.section .body-lg + p {
+  margin-top: var(--space-4);
+}
+
+.body-lg {
+  font-size: var(--fs-lead);
+}
+
+.note {
+  margin-top: var(--space-4);
+  padding: var(--space-3) var(--space-4);
+  border-left: 3px solid var(--ave-blue);
+  background: var(--ave-soft);
+  border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+  color: var(--text-primary);
+  font-weight: 600;
+}
+
+/* ---------- Propósito ---------- */
+
+.values {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: var(--space-4);
+}
+
+.value {
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-top: 4px solid var(--value-color, var(--ave-blue));
+  border-radius: var(--radius-md);
+  padding: var(--space-5) var(--space-4);
+}
+
+.value p {
+  margin-top: var(--space-3);
+}
+
+.value-amor {
+  --value-color: var(--ave-ink);
+}
+
+.value-vontade {
+  --value-color: var(--ave-blue);
+}
+
+.value-esperanca {
+  --value-color: #5b93e6;
+}
+
+@media (prefers-color-scheme: dark) {
+  .value-amor {
+    --value-color: #c6dbfa;
+  }
+}
+
+@media (min-width: 768px) {
+  .values {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/* ---------- DiabetesIA ---------- */
+
+.product-grid {
+  display: grid;
+  gap: var(--space-6);
+  align-items: center;
+}
+
+.product-text p + p {
+  margin-top: var(--space-4);
+}
+
+.product-text h2 + p {
+  margin-top: var(--space-4);
+}
+
+.product-shot {
+  justify-self: center;
+  width: min(100%, 280px);
+}
+
+.product-shot img {
+  width: 100%;
+  border-radius: 28px;
+  border: 1px solid var(--border-strong);
+  box-shadow: var(--shadow-card);
+}
+
+.product-shot figcaption {
+  margin-top: var(--space-3);
+  text-align: center;
+  font-size: var(--fs-small);
+  color: var(--text-hint);
+}
+
+@media (min-width: 900px) {
+  .product-grid {
+    grid-template-columns: 1.4fr 1fr;
+  }
+}
+
+/* ---------- Rodapé ---------- */
+
+.footer {
+  padding: var(--space-6) 0 var(--space-4);
+}
+
+.footer-grid {
+  display: grid;
+  gap: var(--space-5);
+  align-items: start;
+}
+
+.footer-logo {
+  width: 200px;
+  border-radius: var(--radius-md);
+  box-shadow: none;
+}
+
+.footer-slogan {
+  margin-top: var(--space-3);
+  font-weight: 600;
+  color: var(--text-secondary);
+}
+
+.footer ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 4px;
+}
+
+.footer nav a {
+  display: inline-block;
+  padding: 6px 0;
+  font-weight: 600;
+  color: var(--text-primary);
+  text-decoration: none;
+}
+
+.footer nav a:hover {
+  color: var(--ave-link);
+  text-decoration: underline;
+}
+
+.footer-bottom {
+  margin-top: var(--space-5);
+}
+
+.footer-bottom p {
+  padding-top: var(--space-4);
+  border-top: 1px solid var(--border);
+  font-size: 0.9rem;
+  color: var(--text-hint);
+}
+
+@media (min-width: 768px) {
+  .footer-grid {
+    grid-template-columns: 1fr auto;
+  }
+}

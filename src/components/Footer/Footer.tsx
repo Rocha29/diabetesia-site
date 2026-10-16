@@ -38,6 +38,7 @@ export function Footer() {
       <div className={`container ${styles.bottom}`}>
         <p>© 2026 DiabetesIA. Todos os direitos reservados.</p>
         <p>As telas mostradas usam dados de demonstração.</p>
+        <p><a href="ave-labs/">Desenvolvido pela AVE Labs</a></p>
       </div>
     </footer>
   );
