@@ -71,6 +71,16 @@
   color: var(--text-hint);
 }
 
+/* Link discreto para a página da AVE Labs. */
+.bottom a {
+  color: var(--text-hint);
+  font-weight: 600;
+}
+
+.bottom a:hover {
+  color: var(--accent-secondary);
+}
+
 @media (min-width: 768px) {
   .grid {
     grid-template-columns: 2fr 1fr 1fr;

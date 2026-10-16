@@ -41,6 +41,8 @@ export default defineConfig({
         testador: resolve(__dirname, 'testador/index.html'),
         // Página do médico (link temporário do relatório, issue V2 #15).
         relatorio: resolve(__dirname, 'relatorio/index.html'),
+        // Página institucional da AVE Labs.
+        aveLabs: resolve(__dirname, 'ave-labs/index.html'),
       },
     },
   },
