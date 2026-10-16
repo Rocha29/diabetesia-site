@@ -153,13 +153,13 @@ function Report({ report }: { report: SharedReport }) {
           <div className="rv-kpi">
             <span className="k">Média de glicemia</span>
             <span className="v">
-              {g.average === null ? '—' : fmtNum(g.average)} {g.average !== null && <small>mg/dL</small>}
+              {g.average === null ? '-' : fmtNum(g.average)} {g.average !== null && <small>mg/dL</small>}
             </span>
             <span className="s">{g.average === null && g.count > 0 ? 'poucas medições para a média' : plural(g.count, 'medição', 'medições')}</span>
           </div>
           <div className="rv-kpi">
             <span className="k">Entre 70 e 180 mg/dL</span>
-            <span className="v">{g.count > 0 ? `${inR}%` : '—'}</span>
+            <span className="v">{g.count > 0 ? `${inR}%` : '-'}</span>
             <span className="s">
               {g.inRange} de {plural(g.count, 'medição', 'medições')}
             </span>
@@ -172,7 +172,7 @@ function Report({ report }: { report: SharedReport }) {
                   {fmtNum(g.min)} / {fmtNum(g.max)} <small>mg/dL</small>
                 </>
               ) : (
-                '—'
+                '-'
               )}
             </span>
             <span className="s">{daysText}</span>
@@ -206,9 +206,9 @@ function Report({ report }: { report: SharedReport }) {
                   <dt>Média</dt>
                   <dd>{g.average === null ? 'não calculada' : `${fmtNum(g.average)} mg/dL`}</dd>
                   <dt>Mínimo</dt>
-                  <dd>{g.min === null ? '—' : `${fmtNum(g.min)} mg/dL`}</dd>
+                  <dd>{g.min === null ? '-' : `${fmtNum(g.min)} mg/dL`}</dd>
                   <dt>Máximo</dt>
-                  <dd>{g.max === null ? '—' : `${fmtNum(g.max)} mg/dL`}</dd>
+                  <dd>{g.max === null ? '-' : `${fmtNum(g.max)} mg/dL`}</dd>
                   <dt>Entre 70 e 180 mg/dL</dt>
                   <dd>{inR}%</dd>
                 </dl>
@@ -370,18 +370,23 @@ async function loadDemo(hash: string): Promise<LoadResult | null> {
 export function ReportViewer() {
   const [state, setState] = useState<ViewState>({ status: 'loading' });
   const tokenRef = useRef<string | null>(null);
+  const requestRef = useRef(0);
 
   const load = useCallback(async () => {
+    // Troca de #token no meio do carregamento: só a última leitura vale.
+    const req = ++requestRef.current;
     setState({ status: 'loading' });
     const hash = window.location.hash;
     if (import.meta.env.DEV) {
       const demo = await loadDemo(hash);
+      if (req !== requestRef.current) return;
       if (demo) return setState(demo);
       if (hash === '#demo-carregando') return;
     }
     const token = tokenFromHash(hash);
     tokenRef.current = token;
     const result = await loadReport(token);
+    if (req !== requestRef.current) return;
     setState(result);
     if (result.status === 'ok' && token && !accessLogged) {
       accessLogged = true;

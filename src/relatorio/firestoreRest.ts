@@ -206,8 +206,9 @@ export async function logAccess(token: string, { fetch: f = fetch as FetchLike, 
       ...PRIVATE_FETCH,
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
+      // Sem keepalive: o Content-Type JSON exige preflight, que alguns navegadores
+      // recusam com keepalive. O registro é feito ao abrir, não ao sair da página.
       body: JSON.stringify(accessCommitBody(projectId, token, id ?? randomId())),
-      keepalive: true,
     });
     return res.ok;
   } catch {
