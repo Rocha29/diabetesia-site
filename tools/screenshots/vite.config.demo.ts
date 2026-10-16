@@ -2,6 +2,7 @@ import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
 import { fileURLToPath, URL } from 'node:url';
 import path from 'node:path';
+import fs from 'node:fs';
 
 // Demo-only Vite config: serves the real V2 app source (read-only) but swaps
 // the service layer for in-memory fake data, so nothing here ever touches
@@ -9,6 +10,14 @@ import path from 'node:path';
 // V2_DIR defaults to the workspace layout: <workspace>/diabetes-ai-react/Front/diabetesIA-v2
 const here = fileURLToPath(new URL('.', import.meta.url));
 const v2Root = path.resolve(process.env.V2_DIR ?? path.join(here, '../../../diabetes-ai-react/Front/diabetesIA-v2'));
+
+function realNodeModules(root: string): string | null {
+  try {
+    return fs.realpathSync(path.join(root, 'node_modules'));
+  } catch {
+    return null;
+  }
+}
 
 export default defineConfig({
   root: v2Root,
@@ -20,5 +29,6 @@ export default defineConfig({
       { find: '@', replacement: `${v2Root}/src` },
     ],
   },
-  server: { fs: { allow: [v2Root, here] } },
+  // node_modules may be a symlink (git worktrees): allow its real path too, or the icon font is refused (403).
+  server: { fs: { allow: [v2Root, here, realNodeModules(v2Root)].filter(Boolean) as string[] } },
 });
