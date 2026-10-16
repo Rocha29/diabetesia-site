@@ -5,7 +5,7 @@
 // O token vem do fragmento da URL (#token) e só é enviado ao Firestore.
 
 /** Projeto do Firestore (não aparece em nenhum texto da página). */
-export const FIRESTORE_PROJECT_ID: string = import.meta.env.VITE_REPORT_FIRESTORE_PROJECT_ID || 'diabetesia-backend';
+export const FIRESTORE_PROJECT_ID: string = import.meta.env.VITE_REPORT_FIRESTORE_PROJECT_ID || 'diabetesia-fff46';
 
 const API = 'https://firestore.googleapis.com/v1';
 
