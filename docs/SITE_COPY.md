@@ -154,8 +154,8 @@ O DiabetesIA começou como um aplicativo Android, a nossa versão V1. Agora esta
 - Seus dados ficam no Firebase (Google), numa área acessível só pela sua própria conta.
 - As chaves de inteligência artificial ficam apenas no nosso servidor, nunca no aplicativo.
 - Os registros do servidor não guardam o conteúdo das fotos e dos textos enviados.
-- Na versão web, as fotos não são guardadas; no Android, elas ficam no próprio celular.
-- A IA na nuvem recebe apenas a foto e o texto da análise, sem seu nome ou e-mail.
+- O app não guarda as fotos: elas são usadas só na hora da leitura.
+- A leitura por foto usa o Gemini, do Google, no plano gratuito: ele recebe a foto ou o texto da análise, sem seu nome ou e-mail, e pode usar esse conteúdo para melhorar os produtos dele. A IA só funciona se você autorizar.
 
 Saiba mais: [Política de Privacidade](/privacidade) e [Termos de Uso](/termos).
 
@@ -244,38 +244,7 @@ Sim, você pode editar e apagar seus registros. A exclusão completa da conta es
 
 ## 17. Página /privacidade
 
-**Aviso no topo (destacado):** Rascunho — precisa ser revisado juridicamente antes do uso comercial.
-
-**Título:** Política de Privacidade — DiabetesIA
-
-**1. Quais dados coletamos**
-- Conta Google: nome, e-mail e foto, usados para identificar você no app.
-- Dados de saúde que você registra: glicemia, refeições, medicamentos, receitas médicas, perfil (sexo, data de nascimento, altura e peso) e check-ins mensais (peso, tabagismo e atividade física).
-- Fotos que você tira para análise.
-
-**2. Para que usamos**
-- Para mostrar seus registros, relatórios e a evolução ao longo do tempo.
-- Para gerar análises por IA quando você solicita. As análises não substituem orientação médica.
-
-**3. Onde ficam os dados**
-- Firebase (Google), em uma área acessível somente pela sua conta.
-- Fotos: no aplicativo Android, ficam no próprio celular. Na versão web, ficam só durante o uso e não são guardadas.
-- Google Drive e relatórios em PDF: apenas quando você escolhe salvar ou compartilhar.
-
-**4. Inteligência artificial**
-- IA em nuvem: a foto ou o texto da análise passa pelo nosso servidor e é enviado a modelos de IA de terceiros, que podem estar fora do Brasil. Não enviamos seu nome nem seu e-mail. Fotos de receitas podem conter nomes e outros dados impressos nelas.
-- IA local (em testes): o processamento acontece em um servidor da rede local.
-- Você pode recusar a IA em nuvem. O restante do app continua funcionando.
-
-**5. Seus direitos**
-- Ver, exportar e excluir seus dados a qualquer momento, na área de Privacidade do app.
-- Revogar o consentimento da IA em nuvem.
-
-**6. Exclusão**
-- Ao excluir a conta, apagamos seus registros no Firebase e sua conta de acesso. Arquivos que você salvou no Google Drive ficam sob seu controle.
-
-**7. Contato**
-- Controlador e canal de contato: a definir — pendente de validação jurídica.
+O texto é o mesmo da tela Privacidade do app. Fonte única: `src/features/privacy/policyText.ts` no repositório Rocha29/diabetesIA-v2 (versão 2026-10-14). Ao mudar a política no app, gere de novo `privacidade/index.html` com o mesmo texto.
 
 ---
 
@@ -304,7 +273,7 @@ O DiabetesIA pode passar por atualizações, interrupções temporárias ou muda
 O tratamento dos seus dados é descrito na nossa Política de Privacidade, que faz parte destes Termos de Uso.
 
 **7. Encerramento de conta**
-Você pode excluir sua conta a qualquer momento pelas configurações do app. A exclusão remove seus registros conforme descrito na Política de Privacidade.
+Você pode pedir a exclusão da sua conta a qualquer momento. A exclusão pelo app ainda está em construção; como pedir e o que é apagado estão na Política de Privacidade.
 
 **8. Alterações nestes termos**
 Estes termos podem ser atualizados conforme o DiabetesIA evolui. Alterações relevantes serão comunicadas no app.

@@ -19,18 +19,18 @@ const items = [
   },
   {
     icon: IconShield,
-    title: 'IA sem saber quem é você',
-    text: 'Na leitura por foto, a IA recebe a imagem ou o texto da análise, sem o seu nome nem o seu e-mail. O uso da IA tem consentimento separado.',
+    title: 'IA com a sua autorização',
+    text: 'Na leitura por foto, o Gemini, do Google, recebe a imagem ou o texto da análise, sem o seu nome nem o seu e-mail. No plano gratuito, o Google pode usar esse conteúdo para melhorar os produtos dele. A IA só funciona se você autorizar.',
   },
   {
     icon: IconDocument,
     title: 'Seus dados com você',
-    text: 'Veja e exporte seus dados quando quiser, pelas opções de Privacidade do app.',
+    text: 'Veja quantos registros você tem na tela Privacidade do app. A exportação completa ainda está em construção.',
   },
   {
     icon: IconUserX,
     title: 'Saída fácil',
-    text: 'Apague registros ou exclua a conta direto no app.',
+    text: 'Apague seus registros direto no app. A exclusão da conta pelo app ainda está em construção.',
   },
 ];
 
