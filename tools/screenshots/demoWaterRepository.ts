@@ -21,10 +21,9 @@ let seq = 10;
 
 export const firestoreWaterRepository = {
   listSince: async (_userId: string, since: Date) => entries.filter((e) => e.createdAt >= since).map((e) => ({ ...e })),
-  add: async (_userId: string, ml: number, at: Date) => {
-    const id = `w${++seq}`;
+  newId: () => `w${++seq}`,
+  add: async (_userId: string, id: string, ml: number, at: Date) => {
     entries = [...entries, { id, ml, createdAt: at }];
-    return id;
   },
   remove: async (_userId: string, id: string) => {
     entries = entries.filter((e) => e.id !== id);
