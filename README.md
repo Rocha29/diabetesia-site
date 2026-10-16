@@ -87,6 +87,17 @@ customizado ou substituir o corpo de `track` para chamar o SDK do serviço escol
 `/privacidade/` e `/termos/` são páginas HTML separadas (não SPA), com aviso de rascunho em
 destaque no topo — o conteúdo precisa de revisão jurídica antes de uso comercial.
 
+## Relatório para o médico (`relatorio/`)
+
+Página que o médico abre pelo link temporário criado no app (issue V2 #15): `https://rocha29.github.io/diabetesia-site/relatorio/#<token>`.
+
+- Lê o resumo direto da API REST do Firestore (`sharedReports/<token>`), **sem chave de API e sem login**. Quem decide o que pode ser lido são as regras do Firestore (repositório do backend, `firestore.rules`).
+- Registra a abertura em `sharedReports/<token>/accesses` só com o horário do servidor.
+- `noindex`, `<meta name="referrer" content="no-referrer">`, sem analytics. O token fica depois do `#`, então não vai para os logs do GitHub Pages.
+- Projeto do Firestore: `VITE_REPORT_FIRESTORE_PROJECT_ID` (padrão no código).
+- Ver com dados fictícios (só em `npm run dev`, nunca no build): `/diabetesia-site/relatorio/#demo`, `#demo-indisponivel`, `#demo-invalido`, `#demo-erro`, `#demo-carregando`.
+- Código: `src/relatorio/`.
+
 ## Regenerar imagens geradas por script
 
 ```bash

@@ -818,3 +818,48 @@ export const pushTokens = {
 export const bugReportRepository = {
   submit: async () => ({ number: 0, url: '' }),
 };
+
+// ─── Link do relatório para o médico (demo, V2 issue #15) ────────────────────
+
+import type { ReportLinkRepository } from '@/services/reportLinks/reportLinkRepository';
+import type { ReportLink } from '@/types/reportLinks';
+
+const demoDay = (daysAgo: number) => {
+  const d = new Date(Date.now() - daysAgo * 86_400_000);
+  return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`;
+};
+const demoUrl = (n: number) => `https://rocha29.github.io/diabetesia-site/relatorio/#k7Qm${String(n).repeat(35).slice(0, 35)}x2Fa`;
+const hoursFromNow = (h: number) => new Date(Date.now() + h * 3_600_000).toISOString();
+let demoLinks: ReportLink[] = [
+  { id: 'rl_000000000000000000000001', period: 'week', from: demoDay(7), to: demoDay(1), createdAt: hoursFromNow(-3), expiresAt: hoursFromNow(7 * 24 - 3), revokedAt: null, status: 'active', accessCount: 2, lastAccessAt: hoursFromNow(-1.5), url: demoUrl(1) },
+  { id: 'rl_000000000000000000000002', period: 'month', from: demoDay(30), to: demoDay(1), createdAt: hoursFromNow(-20), expiresAt: hoursFromNow(2), revokedAt: null, status: 'active', accessCount: 0, lastAccessAt: null, url: demoUrl(2) },
+  { id: 'rl_000000000000000000000003', period: 'week', from: demoDay(16), to: demoDay(10), createdAt: hoursFromNow(-9 * 24), expiresAt: hoursFromNow(-2 * 24), revokedAt: hoursFromNow(-6 * 24), status: 'revoked', accessCount: 1, lastAccessAt: hoursFromNow(-8 * 24), url: null },
+  { id: 'rl_000000000000000000000004', period: 'month', from: demoDay(45), to: demoDay(16), createdAt: hoursFromNow(-15 * 24), expiresAt: hoursFromNow(-6 * 24), revokedAt: null, status: 'expired', accessCount: 0, lastAccessAt: null, url: null },
+];
+
+export const reportLinkRepository: ReportLinkRepository = {
+  list: async () => ({ links: demoLinks.map((l) => ({ ...l })), maxActive: 5, consentVersion: '2026-10-14' }),
+  create: async (input) => {
+    const link: ReportLink = {
+      id: `rl_${String(demoLinks.length + 1).padStart(24, '0')}`,
+      period: input.period,
+      from: input.from,
+      to: input.to,
+      createdAt: new Date().toISOString(),
+      expiresAt: hoursFromNow(input.validityDays * 24),
+      revokedAt: null,
+      status: 'active',
+      accessCount: 0,
+      lastAccessAt: null,
+      url: demoUrl(demoLinks.length + 1),
+    };
+    demoLinks = [link, ...demoLinks];
+    return { id: link.id, url: link.url!, period: link.period, from: link.from, to: link.to, createdAt: link.createdAt, expiresAt: link.expiresAt };
+  },
+  revoke: async (id) => {
+    demoLinks = demoLinks.map((l) => (l.id === id ? { ...l, status: 'revoked', revokedAt: new Date().toISOString(), url: null } : l));
+  },
+  removeAll: async () => {
+    demoLinks = [];
+  },
+};

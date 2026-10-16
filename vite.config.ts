@@ -14,6 +14,8 @@ export default defineConfig({
         privacidade: resolve(__dirname, 'privacidade/index.html'),
         termos: resolve(__dirname, 'termos/index.html'),
         testador: resolve(__dirname, 'testador/index.html'),
+        // Página do médico (link temporário do relatório, issue V2 #15).
+        relatorio: resolve(__dirname, 'relatorio/index.html'),
       },
     },
   },
