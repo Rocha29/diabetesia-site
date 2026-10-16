@@ -26,6 +26,8 @@ export default defineConfig({
     alias: [
       { find: /^@\/services$/, replacement: fileURLToPath(new URL('./demoServices.ts', import.meta.url)) },
       { find: /^@\/services\/firebase\/firebaseApp$/, replacement: fileURLToPath(new URL('./demoFirebaseApp.ts', import.meta.url)) },
+      // "Água do dia": in-memory water entries instead of Firestore.
+      { find: /^@\/services\/water\/firestoreWaterRepository$/, replacement: fileURLToPath(new URL('./demoWaterRepository.ts', import.meta.url)) },
       { find: '@', replacement: `${v2Root}/src` },
     ],
   },

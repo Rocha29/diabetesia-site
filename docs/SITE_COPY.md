@@ -244,7 +244,7 @@ Sim, você pode editar e apagar seus registros. A exclusão completa da conta es
 
 ## 17. Página /privacidade
 
-O texto é o mesmo da tela Privacidade do app. Fonte única: `src/features/privacy/policyText.ts` no repositório Rocha29/diabetesIA-v2 (versão 2026-10-14). Ao mudar a política no app, gere de novo `privacidade/index.html` com o mesmo texto.
+O texto é o mesmo da tela Privacidade do app. Fonte única: `src/features/privacy/policyText.ts` no repositório Rocha29/diabetesIA-v2 (versão 2026-10-16). Ao mudar a política no app, gere de novo `privacidade/index.html` com o mesmo texto.
 
 ---
 

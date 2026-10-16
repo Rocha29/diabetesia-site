@@ -7,6 +7,7 @@ Gera os prints usados no site (`src/assets/screens/`) a partir do **app real da 
 
 ## Como funciona
 - `vite.config.demo.ts` serve o código-fonte da V2 e troca `@/services` (e `@/services/firebase/firebaseApp`) por `demoServices.ts` e `demoFirebaseApp.ts`. Esses arquivos são implementações em memória com as mesmas interfaces.
+- A água do dia (`@/services/water/firestoreWaterRepository`) é trocada por `demoWaterRepository.ts`, com 800 ml de exemplo.
 - `shoot.mjs` abre o app no Chrome (puppeteer-core, 390×844 @2x), navega pelas telas e salva PNG e WebP em `out/`. O WebP é gerado pelo próprio Chrome via canvas.
 - `run.sh` sobe o Vite de demonstração, roda a captura e copia as imagens para o site.
 
