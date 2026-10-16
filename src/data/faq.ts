@@ -78,13 +78,13 @@ export const faqItems: FaqItem[] = [
     id: 'delete',
     question: 'Posso apagar meus dados?',
     answer:
-      'Sim. Você pode editar e apagar seus registros e, nas opções de Privacidade do app, ver e exportar seus dados e excluir a conta.',
+      'Sim. Você pode editar e apagar seus registros no app. Exportar tudo e excluir a conta pelo app ainda estão em construção; os detalhes estão na Política de Privacidade.',
   },
   {
     id: 'safety',
     question: 'Quem pode ver os meus dados?',
     answer:
-      'Seus registros ficam numa área ligada à sua conta, acessível só por você e, se você quiser, pelas pessoas que convidar, apenas para leitura. Na leitura por foto, a IA recebe a imagem ou o texto da análise, sem o seu nome nem o seu e-mail. Os detalhes estão na Política de Privacidade.',
+      'Seus registros ficam numa área ligada à sua conta, acessível só por você e, se você quiser, pelas pessoas que convidar, apenas para leitura. Na leitura por foto, o Gemini, do Google, recebe a imagem ou o texto da análise, sem o seu nome nem o seu e-mail. No plano gratuito, o Google pode usar esse conteúdo para melhorar os produtos dele. Os detalhes estão na Política de Privacidade.',
     link: { href: 'privacidade/', label: 'Ler a Política de Privacidade' },
   },
   {
