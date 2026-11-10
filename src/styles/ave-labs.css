@@ -366,6 +366,58 @@ figure {
   }
 }
 
+/* ---------- Em criação ---------- */
+
+.projects {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: var(--space-4);
+}
+
+.project {
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-top: 4px solid var(--ave-blue);
+  border-radius: var(--radius-md);
+  padding: var(--space-5) var(--space-4);
+}
+
+.project h3 {
+  margin-top: var(--space-2);
+}
+
+.project p + p {
+  margin-top: var(--space-3);
+}
+
+.project .project-status {
+  display: inline-block;
+  padding: 2px var(--space-3);
+  border-radius: 999px;
+  background: var(--ave-soft);
+  color: var(--ave-heading);
+  font-size: 0.875rem;
+  font-weight: 600;
+}
+
+.project .project-tagline {
+  color: var(--ave-heading);
+  font-weight: 600;
+}
+
+.project .project-note {
+  font-size: 0.9375rem;
+  color: var(--text-secondary);
+}
+
+@media (min-width: 768px) {
+  .projects {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
 /* ---------- DiabetesIA ---------- */
 
 .product-grid {
